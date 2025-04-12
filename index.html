@@ -351,10 +351,128 @@
       html:not(.dark) .border.dark\:border-gray-600 {
         border-color: #e5e7eb !important; /* gray-200 */
       }
+
+      #themeLoadingOverlay {
+        backdrop-filter: blur(8px);
+    }
+
+    .theme-loader-container {
+        width: 120px;
+        height: 120px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .sun-moon {
+        position: relative;
+        width: 80px;
+        height: 80px;
+        animation: rotation 2s linear infinite;
+    }
+
+    .sun {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #fbbf24;
+        border-radius: 50%;
+        box-shadow: 0 0 20px #fbbf24;
+        opacity: 1;
+        transition: opacity 0.5s ease;
+    }
+
+    .dark .sun {
+        opacity: 0;
+    }
+
+    .moon {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #9ca3af;
+        border-radius: 50%;
+        overflow: hidden;
+        box-shadow: 0 0 20px rgba(156, 163, 175, 0.5);
+        opacity: 0;
+        transition: opacity 0.5s ease;
+    }
+
+    .dark .moon {
+        opacity: 1;
+    }
+
+    .crater {
+        position: absolute;
+        background-color: #6b7280;
+        border-radius: 50%;
+    }
+
+    .crater-1 {
+        width: 20px;
+        height: 20px;
+        top: 15px;
+        left: 25px;
+    }
+
+    .crater-2 {
+        width: 15px;
+        height: 15px;
+        top: 40px;
+        left: 15px;
+    }
+
+    .crater-3 {
+        width: 10px;
+        height: 10px;
+        top: 25px;
+        left: 55px;
+    }
+
+    @keyframes rotation {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    @keyframes fadeInOut {
+        0%, 100% {
+            opacity: 0;
+        }
+        50% {
+            opacity: 1;
+        }
+    }
     </style>
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body class="bg-gray-50 dark:bg-gray-900 dark:text-white">
+    <!-- Theme Loading Overlay -->
+    <div id="themeLoadingOverlay" class="fixed inset-0 z-50 flex items-center justify-center bg-white dark:bg-gray-900 opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="relative">
+            <div class="theme-loader-container">
+                <div class="sun-moon">
+                    <div class="sun"></div>
+                    <div class="moon">
+                        <div class="crater crater-1"></div>
+                        <div class="crater crater-2"></div>
+                        <div class="crater crater-3"></div>
+                    </div>
+                </div>
+                <div class="text-center mt-4 text-gray-700 dark:text-gray-300 font-medium">
+                    <p id="themeLoadingText">Aplicando tema...</p>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Navigation -->
     <nav
       x-data="{ isOpen: false }"
@@ -2145,52 +2263,76 @@
     <script>
       // Função para alternar o tema
       function toggleTheme() {
-        // Adiciona classe de transição ao HTML
-        document.documentElement.classList.add("transition");
-
-        // Toggle da classe dark no HTML
-        document.documentElement.classList.toggle("dark");
-
-        // Determina o tema atual
-        const isDark = document.documentElement.classList.contains("dark");
-
-        // Atualiza ícones e texto
-        const sunIcon = document.getElementById("sunIcon");
-        const moonIcon = document.getElementById("moonIcon");
-        const sunIconMobile = document.getElementById("sunIconMobile");
-        const moonIconMobile = document.getElementById("moonIconMobile");
-        const themeTextMobile = document.getElementById("themeTextMobile");
-
-        if (isDark) {
-          // Modo escuro ativo
-          sunIcon.classList.add("hidden");
-          moonIcon.classList.remove("hidden");
-          sunIconMobile.classList.add("hidden");
-          moonIconMobile.classList.remove("hidden");
-          themeTextMobile.textContent = "Modo Claro";
-          localStorage.setItem("theme", "dark");
-
-          // Forçar aplicação do tema escuro
-          document.body.classList.add("dark-theme");
-        } else {
-          // Modo claro ativo
-          moonIcon.classList.add("hidden");
-          sunIcon.classList.remove("hidden");
-          moonIconMobile.classList.add("hidden");
-          sunIconMobile.classList.remove("hidden");
-          themeTextMobile.textContent = "Modo Escuro";
-          localStorage.setItem("theme", "light");
-
-          // Remover classe de tema escuro forçado
-          document.body.classList.remove("dark-theme");
-        }
-
-        // Remove a classe de transição após a transição terminar
+        // Mostrar overlay de loading
+        const loadingOverlay = document.getElementById('themeLoadingOverlay');
+        const loadingText = document.getElementById('themeLoadingText');
+        const isDarkBeforeToggle = document.documentElement.classList.contains('dark');
+        
+        // Atualizar texto com base no tema que será aplicado
+        loadingText.textContent = isDarkBeforeToggle ? 'Aplicando tema claro...' : 'Aplicando tema escuro...';
+        
+        // Mostrar overlay com animação suave
+        loadingOverlay.classList.remove('opacity-0');
+        loadingOverlay.classList.add('opacity-100');
+        loadingOverlay.style.pointerEvents = 'auto';
+        
+        // Atrasar a transição do tema para dar tempo à animação
         setTimeout(() => {
-          document.documentElement.classList.remove("transition");
-        }, 300);
-      }
-
+            // Adiciona classe de transição ao HTML
+            document.documentElement.classList.add("transition");
+            
+            // Toggle da classe dark no HTML
+            document.documentElement.classList.toggle("dark");
+            
+            // Determina o tema atual
+            const isDark = document.documentElement.classList.contains("dark");
+            
+            // Atualiza ícones e texto
+            const sunIcon = document.getElementById("sunIcon");
+            const moonIcon = document.getElementById("moonIcon");
+            const sunIconMobile = document.getElementById("sunIconMobile");
+            const moonIconMobile = document.getElementById("moonIconMobile");
+            const themeTextMobile = document.getElementById("themeTextMobile");
+            
+            if (isDark) {
+                // Modo escuro ativo
+                sunIcon.classList.add("hidden");
+                moonIcon.classList.remove("hidden");
+                sunIconMobile.classList.add("hidden");
+                moonIconMobile.classList.remove("hidden");
+                themeTextMobile.textContent = "Modo Claro";
+                localStorage.setItem("theme", "dark");
+                
+                // Forçar aplicação do tema escuro
+                document.body.classList.add("dark-theme");
+            } else {
+                // Modo claro ativo
+                moonIcon.classList.add("hidden");
+                sunIcon.classList.remove("hidden");
+                moonIconMobile.classList.add("hidden");
+                sunIconMobile.classList.remove("hidden");
+                themeTextMobile.textContent = "Modo Escuro";
+                localStorage.setItem("theme", "light");
+                
+                // Remover classe de tema escuro forçado
+                document.body.classList.remove("dark-theme");
+            }
+            
+            // Dar tempo para aplicar todas as mudanças de estilo
+            setTimeout(() => {
+                // Esconder overlay de loading
+                loadingOverlay.classList.remove('opacity-100');
+                loadingOverlay.classList.add('opacity-0');
+                loadingOverlay.style.pointerEvents = 'none';
+                
+                // Remove a classe de transição após a transição terminar
+                setTimeout(() => {
+                    document.documentElement.classList.remove("transition");
+                }, 300);
+            }, 300); // Tempo suficiente para aplicar todos os estilos
+            
+        }, 400); // Tempo para mostrar a animação antes de mudar o tema
+    }
       // Adiciona listeners aos botões de toggle
       document
         .getElementById("themeToggle")
