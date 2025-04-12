@@ -11,13 +11,21 @@
     />
 
     <link
+      rel="preload"
       href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css"
-      rel="stylesheet"
+      as="style"
     />
     <link
+      rel="preload"
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
     />
+    <noscript
+      ><link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    /></noscript>
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
       rel="stylesheet"
@@ -29,12 +37,15 @@
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.10.3/cdn.min.js"
       defer
+      crossorigin="anonymous"
     ></script>
 
     <style>
       body {
         font-family: "Poppins", sans-serif;
         scroll-behavior: smooth;
+        width: 100vw;
+        overflow-x: hidden;
       }
       .gradient-text {
         background: linear-gradient(90deg, #0ea5e9, #0369a1);
@@ -353,35 +364,34 @@
       }
 
       html:not(.dark) .dark\:text-gray-300 {
-        color: rgb(75 85 99 / var(--tw-text-opacity, 1)) !important; 
+        color: rgb(75 85 99 / var(--tw-text-opacity, 1)) !important;
       }
 
       html:not(.dark) .dark\:text-white {
-        color: rgb(75 85 99 / var(--tw-text-opacity, 1)) !important; 
+        color: rgb(75 85 99 / var(--tw-text-opacity, 1)) !important;
       }
-
 
       #themeLoadingOverlay {
         backdrop-filter: blur(8px);
-    }
+      }
 
-    .theme-loader-container {
+      .theme-loader-container {
         width: 120px;
         height: 120px;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-    }
+      }
 
-    .sun-moon {
+      .sun-moon {
         position: relative;
         width: 80px;
         height: 80px;
         animation: rotation 2s linear infinite;
-    }
+      }
 
-    .sun {
+      .sun {
         position: absolute;
         top: 0;
         left: 0;
@@ -392,13 +402,13 @@
         box-shadow: 0 0 20px #fbbf24;
         opacity: 1;
         transition: opacity 0.5s ease;
-    }
+      }
 
-    .dark .sun {
+      .dark .sun {
         opacity: 0;
-    }
+      }
 
-    .moon {
+      .moon {
         position: absolute;
         top: 0;
         left: 0;
@@ -410,82 +420,88 @@
         box-shadow: 0 0 20px rgba(156, 163, 175, 0.5);
         opacity: 0;
         transition: opacity 0.5s ease;
-    }
+      }
 
-    .dark .moon {
+      .dark .moon {
         opacity: 1;
-    }
+      }
 
-    .crater {
+      .crater {
         position: absolute;
         background-color: #6b7280;
         border-radius: 50%;
-    }
+      }
 
-    .crater-1 {
+      .crater-1 {
         width: 20px;
         height: 20px;
         top: 15px;
         left: 25px;
-    }
+      }
 
-    .crater-2 {
+      .crater-2 {
         width: 15px;
         height: 15px;
         top: 40px;
         left: 15px;
-    }
+      }
 
-    .crater-3 {
+      .crater-3 {
         width: 10px;
         height: 10px;
         top: 25px;
         left: 55px;
-    }
+      }
 
-    @keyframes rotation {
+      @keyframes rotation {
         0% {
-            transform: rotate(0deg);
+          transform: rotate(0deg);
         }
         100% {
-            transform: rotate(360deg);
+          transform: rotate(360deg);
         }
-    }
+      }
 
-    @keyframes fadeInOut {
-        0%, 100% {
-            opacity: 0;
+      @keyframes fadeInOut {
+        0%,
+        100% {
+          opacity: 0;
         }
         50% {
-            opacity: 1;
+          opacity: 1;
         }
-    }
+      }
     </style>
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body class="bg-gray-50 dark:bg-gray-900 dark:text-white">
+  <body class="bg-gray-50 dark:bg-gray-900 dark:text-white w-screen">
     <!-- Theme Loading Overlay -->
-    <div id="themeLoadingOverlay" class="fixed inset-0 z-50 flex items-center justify-center bg-white dark:bg-gray-900 opacity-0 pointer-events-none transition-opacity duration-300">
-        <div class="relative">
-            <div class="theme-loader-container">
-                <div class="sun-moon">
-                    <div class="sun"></div>
-                    <div class="moon">
-                        <div class="crater crater-1"></div>
-                        <div class="crater crater-2"></div>
-                        <div class="crater crater-3"></div>
-                    </div>
-                </div>
-                <div class="text-center mt-4 text-gray-700 dark:text-gray-300 font-medium">
-                    <p id="themeLoadingText">Aplicando tema...</p>
-                </div>
+    <div
+      id="themeLoadingOverlay"
+      class="fixed inset-0 z-50 flex items-center justify-center bg-white dark:bg-gray-900 opacity-0 pointer-events-none transition-opacity duration-300"
+    >
+      <div class="relative">
+        <div class="theme-loader-container">
+          <div class="sun-moon">
+            <div class="sun"></div>
+            <div class="moon">
+              <div class="crater crater-1"></div>
+              <div class="crater crater-2"></div>
+              <div class="crater crater-3"></div>
             </div>
+          </div>
+          <div
+            class="text-center mt-4 text-gray-700 dark:text-gray-300 font-medium"
+          >
+            <p id="themeLoadingText">Aplicando tema...</p>
+          </div>
         </div>
+      </div>
     </div>
     <!-- Navigation -->
     <nav
       x-data="{ isOpen: false }"
-      class="bg-white shadow-md fixed w-full z-10 dark:bg-gray-800"
+      class="bg-white shadow-md fixed w-full z-10 dark:bg-gray-800 w-screen overflow-x-hidden"
     >
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -559,8 +575,38 @@
           </div>
           <div class="-mr-2 flex md:hidden">
             <button
+              id="themeToggleMobile"
+              class="flex items-center text-gray-600 hover:text-sky-600 dark:text-gray-300 dark:hover:text-sky-400"
+              aria-label="Toggle theme"
+            >
+              <svg
+                id="sunIconMobile"
+                class="w-5 h-5 mr-2"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+              <svg
+                id="moonIconMobile"
+                class="w-5 h-5 mr-2 hidden"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
+                ></path>
+              </svg>
+            </button>
+            <button
               @click="isOpen = !isOpen"
-              class="bg-white p-2 rounded-md text-gray-600 hover:text-sky-600 focus:outline-none"
+              class="bg-white dark:bg-gray-800 p-2 rounded-md text-gray-600 hover:text-sky-600 focus:outline-none"
             >
               <svg
                 class="h-6 w-6"
@@ -620,40 +666,6 @@
             class="text-gray-600 hover:text-sky-600 block px-3 py-2 rounded-md text-base font-medium dark:text-gray-300 dark:hover:text-sky-400"
             >Contato</a
           >
-          <!-- Botão de Toggle de Tema Mobile -->
-          <div class="px-3 py-2">
-            <button
-              id="themeToggleMobile"
-              class="flex items-center text-gray-600 hover:text-sky-600 dark:text-gray-300 dark:hover:text-sky-400"
-              aria-label="Toggle theme"
-            >
-              <svg
-                id="sunIconMobile"
-                class="w-5 h-5 mr-2"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
-                  clip-rule="evenodd"
-                ></path>
-              </svg>
-              <svg
-                id="moonIconMobile"
-                class="w-5 h-5 mr-2 hidden"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
-                ></path>
-              </svg>
-              <span id="themeTextMobile">Modo Escuro</span>
-            </button>
-          </div>
         </div>
       </div>
     </nav>
@@ -932,7 +944,6 @@
       </div>
     </section>
 
-    <!-- Experience Section -->
     <!-- Experience Section -->
     <section id="experience" class="py-20 bg-gray-50 dark:bg-gray-900">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -2111,73 +2122,110 @@
     <script>
       // Back to Top Button
       const backToTopButton = document.getElementById("backToTop");
+      const themeToggle = document.getElementById("themeToggle");
+      const themeToggleMobile = document.getElementById("themeToggleMobile");
+      const loadingOverlay = document.getElementById("themeLoadingOverlay");
+      const loadingText = document.getElementById("themeLoadingText");
 
-      window.addEventListener("scroll", () => {
-        if (window.pageYOffset > 300) {
-          backToTopButton.classList.add("visible");
-        } else {
-          backToTopButton.classList.remove("visible");
-        }
+      // Funções de inicialização que serão executadas quando o DOM estiver carregado
+      document.addEventListener("DOMContentLoaded", () => {
+        // Verificar tema salvo
+        checkTheme();
+
+        // Configurar animações
+        setupAnimations();
+
+        // Configurar navegação mobile
+        setupMobileNav();
+
+        // Configurar formulário de contato
+        setupContactForm();
+
+        // Adicionar smooth scrolling
+        setupSmoothScrolling();
+
+        // Configurar botão voltar ao topo
+        setupBackToTop();
       });
 
-      backToTopButton.addEventListener("click", () => {
-        window.scrollTo({
-          top: 0,
-          behavior: "smooth",
+      // Configuração do botão "voltar ao topo"
+      function setupBackToTop() {
+        window.addEventListener(
+          "scroll",
+          () => {
+            if (window.pageYOffset > 300) {
+              backToTopButton.classList.add("visible");
+            } else {
+              backToTopButton.classList.remove("visible");
+            }
+          },
+          { passive: true }
+        ); // Adiciona passive para melhorar performance
+
+        backToTopButton.addEventListener("click", () => {
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+          });
         });
-      });
+      }
 
-      // Animate Skill Bars on Scroll
-      function animateSkills() {
+      // Configuração das animações
+      function setupAnimations() {
+        // Animar barras de habilidades
         const skillBars = document.querySelectorAll(".skill-bar");
         const skillsSection = document.getElementById("skills");
 
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                skillBars.forEach((bar) => {
-                  const percentage = bar.getAttribute("data-percentage");
-                  bar.style.width = percentage;
-                });
-                observer.unobserve(entry.target);
-              }
-            });
-          },
-          { threshold: 0.5 }
-        );
+        if (skillsSection && "IntersectionObserver" in window) {
+          const observer = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  skillBars.forEach((bar) => {
+                    const percentage = bar.getAttribute("data-percentage");
+                    bar.style.width = percentage;
+                  });
+                  observer.unobserve(entry.target);
+                }
+              });
+            },
+            { threshold: 0.5 }
+          );
 
-        observer.observe(skillsSection);
-      }
+          observer.observe(skillsSection);
+        }
 
-      // Animate elements on scroll
-      function animateOnScroll() {
+        // Animar elementos durante o scroll
         const animatedElements =
           document.querySelectorAll(".animate-on-scroll");
 
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                const element = entry.target;
-                const animation = element.getAttribute("data-animation");
-                element.classList.add(animation);
-                observer.unobserve(element);
-              }
-            });
-          },
-          { threshold: 0.1 }
-        );
+        if (animatedElements.length > 0 && "IntersectionObserver" in window) {
+          const observer = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  const element = entry.target;
+                  const animation = element.getAttribute("data-animation");
+                  element.classList.add(animation);
+                  observer.unobserve(element);
+                }
+              });
+            },
+            { threshold: 0.1 }
+          );
 
-        animatedElements.forEach((element) => {
-          observer.observe(element);
-        });
+          animatedElements.forEach((element) => {
+            observer.observe(element);
+          });
+        }
       }
 
-      // Mobile Navigation
+      // Configuração do menu mobile
       function setupMobileNav() {
         const mobileMenu = document.getElementById("mobileMenu");
-        const mobileMenuLinks = document.querySelectorAll("#mobileMenu a");
+        if (!mobileMenu) return;
+
+        const mobileMenuLinks = mobileMenu.querySelectorAll("a");
 
         mobileMenuLinks.forEach((link) => {
           link.addEventListener("click", () => {
@@ -2186,13 +2234,8 @@
         });
       }
 
-      // Initialize
-      document.addEventListener("DOMContentLoaded", () => {
-        animateSkills();
-        animateOnScroll();
-        setupMobileNav();
-
-        // Add smooth scrolling to all links
+      // Configuração do smooth scrolling
+      function setupSmoothScrolling() {
         document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
           anchor.addEventListener("click", function (e) {
             e.preventDefault();
@@ -2206,151 +2249,140 @@
             }
           });
         });
-      });
-    </script>
+      }
 
-    <script>
-      const form = document.getElementById("contactForm");
-      const button = document.getElementById("submitButton");
-      const buttonText = document.getElementById("buttonText");
+      // Configuração do formulário de contato
+      function setupContactForm() {
+        const form = document.getElementById("contactForm");
+        if (!form) return;
 
-      form.addEventListener("submit", async function (e) {
-        e.preventDefault();
+        const button = document.getElementById("submitButton");
+        const buttonText = document.getElementById("buttonText");
 
-        // Set loading state
-        button.disabled = true;
-        buttonText.innerHTML = `
+        form.addEventListener("submit", async function (e) {
+          e.preventDefault();
+
+          // Set loading state
+          button.disabled = true;
+          buttonText.innerHTML = `
       <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
         <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
         <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path>
       </svg>
     `;
 
-        const nome = document.getElementById("name").value;
-        const email = document.getElementById("email").value;
-        const telefone = document.getElementById("subject").value;
-        const mensagem = document.getElementById("message").value;
+          const nome = document.getElementById("name").value;
+          const email = document.getElementById("email").value;
+          const telefone = document.getElementById("subject").value;
+          const mensagem = document.getElementById("message").value;
 
-        try {
-          const response = await fetch("/send", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ nome, email, telefone, mensagem }),
-          });
+          try {
+            const response = await fetch("/send", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ nome, email, telefone, mensagem }),
+            });
 
-          const result = await response.text();
-          alert(result);
+            const result = await response.text();
+            alert(result);
 
-          // Sucesso: mostrar ícone de check
-          buttonText.innerHTML = `
+            // Sucesso: mostrar ícone de check
+            buttonText.innerHTML = `
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
         </svg>
         <div>Enviado!</div>
       `;
 
-          // Aguardar 2 segundos e resetar botão
-          setTimeout(() => {
+            // Aguardar 2 segundos e resetar botão
+            setTimeout(() => {
+              button.disabled = false;
+              buttonText.textContent = "Enviar mensagem";
+              form.reset();
+            }, 2000);
+          } catch (err) {
+            console.error("Erro ao enviar:", err);
+            alert("Erro ao enviar o email.");
+
+            // Resetar botão em caso de erro
             button.disabled = false;
             buttonText.textContent = "Enviar mensagem";
-            form.reset();
-          }, 2000);
-        } catch (err) {
-          console.error("Erro ao enviar:", err);
-          alert("Erro ao enviar o email.");
+          }
+        });
+      }
 
-          // Resetar botão em caso de erro
-          button.disabled = false;
-          buttonText.textContent = "Enviar mensagem";
-        }
-      });
-    </script>
-
-    <!-- JavaScript para o Toggle de Tema -->
-    <script>
       // Função para alternar o tema
       function toggleTheme() {
-        // Mostrar overlay de loading
-        const loadingOverlay = document.getElementById('themeLoadingOverlay');
-        const loadingText = document.getElementById('themeLoadingText');
-        const isDarkBeforeToggle = document.documentElement.classList.contains('dark');
-        
-        // Atualizar texto com base no tema que será aplicado
-        loadingText.textContent = isDarkBeforeToggle ? 'Aplicando tema claro...' : 'Aplicando tema escuro...';
-        
-        // Mostrar overlay com animação suave
-        loadingOverlay.classList.remove('opacity-0');
-        loadingOverlay.classList.add('opacity-100');
-        loadingOverlay.style.pointerEvents = 'auto';
-        
-        // Atrasar a transição do tema para dar tempo à animação
-        setTimeout(() => {
-            // Adiciona classe de transição ao HTML
-            document.documentElement.classList.add("transition");
-            
-            // Toggle da classe dark no HTML
-            document.documentElement.classList.toggle("dark");
-            
-            // Determina o tema atual
-            const isDark = document.documentElement.classList.contains("dark");
-            
-            // Atualiza ícones e texto
-            const sunIcon = document.getElementById("sunIcon");
-            const moonIcon = document.getElementById("moonIcon");
-            const sunIconMobile = document.getElementById("sunIconMobile");
-            const moonIconMobile = document.getElementById("moonIconMobile");
-            const themeTextMobile = document.getElementById("themeTextMobile");
-            
-            if (isDark) {
-                // Modo escuro ativo
-                sunIcon.classList.add("hidden");
-                moonIcon.classList.remove("hidden");
-                sunIconMobile.classList.add("hidden");
-                moonIconMobile.classList.remove("hidden");
-                themeTextMobile.textContent = "Modo Claro";
-                localStorage.setItem("theme", "dark");
-                
-                // Forçar aplicação do tema escuro
-                document.body.classList.add("dark-theme");
-            } else {
-                // Modo claro ativo
-                moonIcon.classList.add("hidden");
-                sunIcon.classList.remove("hidden");
-                moonIconMobile.classList.add("hidden");
-                sunIconMobile.classList.remove("hidden");
-                themeTextMobile.textContent = "Modo Escuro";
-                localStorage.setItem("theme", "light");
-                
-                // Remover classe de tema escuro forçado
-                document.body.classList.remove("dark-theme");
-            }
-            
-            // Dar tempo para aplicar todas as mudanças de estilo
-            setTimeout(() => {
-                // Esconder overlay de loading
-                loadingOverlay.classList.remove('opacity-100');
-                loadingOverlay.classList.add('opacity-0');
-                loadingOverlay.style.pointerEvents = 'none';
-                
-                // Remove a classe de transição após a transição terminar
-                setTimeout(() => {
-                    document.documentElement.classList.remove("transition");
-                }, 300);
-            }, 300); // Tempo suficiente para aplicar todos os estilos
-            
-        }, 400); // Tempo para mostrar a animação antes de mudar o tema
-    }
-      // Adiciona listeners aos botões de toggle
-      document
-        .getElementById("themeToggle")
-        .addEventListener("click", toggleTheme);
-      document
-        .getElementById("themeToggleMobile")
-        .addEventListener("click", toggleTheme);
+        // Determinar o tema atual antes da troca
+        const isDarkBeforeToggle =
+          document.documentElement.classList.contains("dark");
 
-      // Verifica a preferência salva do usuário
+        // Atualizar texto com base no tema que será aplicado
+        loadingText.textContent = isDarkBeforeToggle
+          ? "Aplicando tema claro..."
+          : "Aplicando tema escuro...";
+
+        // Mostrar overlay com animação suave
+        loadingOverlay.classList.remove("opacity-0");
+        loadingOverlay.classList.add("opacity-100");
+        loadingOverlay.style.pointerEvents = "auto";
+
+        // Usar requestAnimationFrame para atrasar a operação de forma otimizada
+        requestAnimationFrame(() => {
+          // Adiciona classe de transição ao HTML
+          document.documentElement.classList.add("transition");
+
+          // Toggle da classe dark no HTML
+          document.documentElement.classList.toggle("dark");
+
+          // Determina o tema atual
+          const isDark = document.documentElement.classList.contains("dark");
+
+          // Atualiza ícones
+          const sunIcon = document.getElementById("sunIcon");
+          const moonIcon = document.getElementById("moonIcon");
+          const sunIconMobile = document.getElementById("sunIconMobile");
+          const moonIconMobile = document.getElementById("moonIconMobile");
+
+          if (isDark) {
+            // Modo escuro ativo
+            sunIcon.classList.add("hidden");
+            moonIcon.classList.remove("hidden");
+            sunIconMobile.classList.add("hidden");
+            moonIconMobile.classList.remove("hidden");
+            localStorage.setItem("theme", "dark");
+
+            // Forçar aplicação do tema escuro
+            document.body.classList.add("dark-theme");
+          } else {
+            // Modo claro ativo
+            moonIcon.classList.add("hidden");
+            sunIcon.classList.remove("hidden");
+            moonIconMobile.classList.add("hidden");
+            sunIconMobile.classList.remove("hidden");
+            localStorage.setItem("theme", "light");
+
+            // Remover classe de tema escuro forçado
+            document.body.classList.remove("dark-theme");
+          }
+
+          // Esconder overlay de loading após tempo suficiente
+          setTimeout(() => {
+            loadingOverlay.classList.remove("opacity-100");
+            loadingOverlay.classList.add("opacity-0");
+            loadingOverlay.style.pointerEvents = "none";
+
+            // Remove a classe de transição após a transição terminar
+            setTimeout(() => {
+              document.documentElement.classList.remove("transition");
+            }, 300);
+          }, 300);
+        });
+      }
+
+      // Verifica preferência de tema do usuário
       function checkTheme() {
         const userTheme = localStorage.getItem("theme");
         const prefersDark = window.matchMedia(
@@ -2361,18 +2393,16 @@
           document.documentElement.classList.add("dark");
           document.body.classList.add("dark-theme");
 
-          // Atualiza ícones e texto
+          // Atualiza ícones
           const sunIcon = document.getElementById("sunIcon");
           const moonIcon = document.getElementById("moonIcon");
           const sunIconMobile = document.getElementById("sunIconMobile");
           const moonIconMobile = document.getElementById("moonIconMobile");
-          const themeTextMobile = document.getElementById("themeTextMobile");
 
           sunIcon.classList.add("hidden");
           moonIcon.classList.remove("hidden");
           sunIconMobile.classList.add("hidden");
           moonIconMobile.classList.remove("hidden");
-          themeTextMobile.textContent = "Modo Claro";
         } else {
           // Garantir que o tema claro seja aplicado explicitamente
           document.documentElement.classList.remove("dark");
@@ -2380,8 +2410,14 @@
         }
       }
 
-      // Verifica o tema quando a página carrega
-      document.addEventListener("DOMContentLoaded", checkTheme);
+      // Adiciona event listeners para toggle de tema
+      if (themeToggle) {
+        themeToggle.addEventListener("click", toggleTheme);
+      }
+
+      if (themeToggleMobile) {
+        themeToggleMobile.addEventListener("click", toggleTheme);
+      }
     </script>
   </body>
 </html>
