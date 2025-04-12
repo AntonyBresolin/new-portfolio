@@ -40,6 +40,9 @@
       crossorigin="anonymous"
     ></script>
 
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
     <style>
       body {
         font-family: "Poppins", sans-serif;
@@ -60,23 +63,10 @@
         -webkit-text-fill-color: transparent;
       }
 
-      .slide-in-bottom {
-        animation: slide-in-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)
-          both;
-      }
       .slide-in-right {
         animation: slide-in-right 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
       }
-      @keyframes slide-in-bottom {
-        0% {
-          transform: translateY(100px);
-          opacity: 0;
-        }
-        100% {
-          transform: translateY(0);
-          opacity: 1;
-        }
-      }
+
       @keyframes slide-in-right {
         0% {
           transform: translateX(100px);
@@ -486,6 +476,76 @@
         50% {
           opacity: 1;
         }
+      }
+
+      .fade-in {
+        animation: fadeIn 0.5s ease-in-out;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      .scale-up {
+        transition: transform 0.3s ease;
+      }
+
+      .scale-up:hover {
+        transform: scale(1.05);
+      }
+
+      .pulse {
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.05);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      .hover-lift {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .hover-lift:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      }
+
+      .dark .hover-lift:hover {
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      }
+
+      /* Animação para links da navegação */
+      .nav-link {
+        position: relative;
+      }
+
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background-color: currentColor;
+        transition: width 0.3s ease;
+      }
+
+      .nav-link:hover::after {
+        width: 100%;
       }
     </style>
     <script src="https://cdn.tailwindcss.com"></script>
@@ -976,7 +1036,12 @@
           ></div>
 
           <!-- Experience Item 1 -->
-          <div class="flex flex-col md:flex-row mb-12 slide-in-bottom">
+          <div
+            class="flex flex-col md:flex-row mb-12"
+            data-aos="fade-up"
+            data-aos-duration="1000"
+            data-aos-delay="100"
+          >
             <div class="md:w-1/2 pr-0 md:pr-12 text-right">
               <div
                 class="hidden md:block absolute w-4 h-4 rounded-full bg-sky-500 border-4 border-white left-1/2 transform -translate-x-1/2"
@@ -1089,7 +1154,12 @@
           </div>
 
           <!-- Experience Item 2 -->
-          <div class="flex flex-col md:flex-row mb-12 slide-in-bottom">
+          <div
+            class="flex flex-col md:flex-row mb-12"
+            data-aos="fade-up"
+            data-aos-duration="1000"
+            data-aos-delay="100"
+          >
             <div class="md:w-1/2 pr-0 md:pr-12 text-right order-1 md:order-1">
               <div
                 class="hidden md:block absolute w-4 h-4 rounded-full bg-sky-500 border-4 border-white left-1/2 transform -translate-x-1/2"
@@ -1190,7 +1260,12 @@
           </div>
 
           <!-- Experience Item 3 -->
-          <div class="flex flex-col md:flex-row mb-12 slide-in-bottom">
+          <div
+            class="flex flex-col md:flex-row mb-12"
+            data-aos="fade-up"
+            data-aos-duration="1000"
+            data-aos-delay="100"
+          >
             <div class="md:w-1/2 pr-0 md:pr-12 text-right">
               <div
                 class="hidden md:block absolute w-4 h-4 rounded-full bg-sky-500 border-4 border-white left-1/2 transform -translate-x-1/2"
@@ -1285,7 +1360,12 @@
           </div>
 
           <!-- Experience Item 4 -->
-          <div class="flex flex-col md:flex-row mb-12 slide-in-bottom">
+          <div
+            class="flex flex-col md:flex-row mb-12"
+            data-aos="fade-up"
+            data-aos-duration="1000"
+            data-aos-delay="100"
+          >
             <div class="md:w-1/2 pr-0 md:pr-12 text-right order-1 md:order-1">
               <div
                 class="hidden md:block absolute w-4 h-4 rounded-full bg-sky-500 border-4 border-white left-1/2 transform -translate-x-1/2"
@@ -1478,7 +1558,10 @@
 
             <div class="grid grid-cols-3 gap-4">
               <div
-                class="bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg p-4 text-center hover:shadow-md transition duration-300"
+                class="bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg p-4 text-center hover:shadow-md transition duration-300 scale-up"
+                data-aos="flip-left"
+                data-aos-delay="100"
+                data-aos-duration="800"
               >
                 <div
                   class="w-12 h-12 bg-sky-100 dark:bg-sky-900 skill-icon-bg rounded-full flex items-center justify-center mx-auto mb-3"
@@ -1491,7 +1574,10 @@
               </div>
 
               <div
-                class="bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg p-4 text-center hover:shadow-md transition duration-300"
+                class="bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg p-4 text-center hover:shadow-md transition duration-300 scale-up"
+                data-aos="flip-left"
+                data-aos-delay="100"
+                data-aos-duration="800"
               >
                 <div
                   class="w-12 h-12 bg-sky-100 dark:bg-sky-900 skill-icon-bg rounded-full flex items-center justify-center mx-auto mb-3"
@@ -1502,7 +1588,10 @@
               </div>
 
               <div
-                class="bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg p-4 text-center hover:shadow-md transition duration-300"
+                class="bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg p-4 text-center hover:shadow-md transition duration-300 scale-up"
+                data-aos="flip-left"
+                data-aos-delay="100"
+                data-aos-duration="800"
               >
                 <div
                   class="w-12 h-12 bg-sky-100 dark:bg-sky-900 skill-icon-bg rounded-full flex items-center justify-center mx-auto mb-3"
@@ -1515,7 +1604,10 @@
               </div>
 
               <div
-                class="bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg p-4 text-center hover:shadow-md transition duration-300"
+                class="bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg p-4 text-center hover:shadow-md transition duration-300 scale-up"
+                data-aos="flip-left"
+                data-aos-delay="100"
+                data-aos-duration="800"
               >
                 <div
                   class="w-12 h-12 bg-sky-100 dark:bg-sky-900 skill-icon-bg rounded-full flex items-center justify-center mx-auto mb-3"
@@ -1526,7 +1618,10 @@
               </div>
 
               <div
-                class="bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg p-4 text-center hover:shadow-md transition duration-300"
+                class="bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg p-4 text-center hover:shadow-md transition duration-300 scale-up"
+                data-aos="flip-left"
+                data-aos-delay="100"
+                data-aos-duration="800"
               >
                 <div
                   class="w-12 h-12 bg-sky-100 dark:bg-sky-900 skill-icon-bg rounded-full flex items-center justify-center mx-auto mb-3"
@@ -1537,7 +1632,10 @@
               </div>
 
               <div
-                class="bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg p-4 text-center hover:shadow-md transition duration-300"
+                class="bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg p-4 text-center hover:shadow-md transition duration-300 scale-up"
+                data-aos="flip-left"
+                data-aos-delay="100"
+                data-aos-duration="800"
               >
                 <div
                   class="w-12 h-12 bg-sky-100 dark:bg-sky-900 skill-icon-bg rounded-full flex items-center justify-center mx-auto mb-3"
@@ -1550,7 +1648,10 @@
               </div>
 
               <div
-                class="bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg p-4 text-center hover:shadow-md transition duration-300"
+                class="bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg p-4 text-center hover:shadow-md transition duration-300 scale-up"
+                data-aos="flip-left"
+                data-aos-delay="100"
+                data-aos-duration="800"
               >
                 <div
                   class="w-12 h-12 bg-sky-100 dark:bg-sky-900 skill-icon-bg rounded-full flex items-center justify-center mx-auto mb-3"
@@ -1563,7 +1664,10 @@
               </div>
 
               <div
-                class="bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg p-4 text-center hover:shadow-md transition duration-300"
+                class="bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg p-4 text-center hover:shadow-md transition duration-300 scale-up"
+                data-aos="flip-left"
+                data-aos-delay="100"
+                data-aos-duration="800"
               >
                 <div
                   class="w-12 h-12 bg-sky-100 dark:bg-sky-900 skill-icon-bg rounded-full flex items-center justify-center mx-auto mb-3"
@@ -1576,7 +1680,10 @@
               </div>
 
               <div
-                class="bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg p-4 text-center hover:shadow-md transition duration-300"
+                class="bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg p-4 text-center hover:shadow-md transition duration-300 scale-up"
+                data-aos="flip-left"
+                data-aos-delay="100"
+                data-aos-duration="800"
               >
                 <div
                   class="w-12 h-12 bg-sky-100 dark:bg-sky-900 skill-icon-bg rounded-full flex items-center justify-center mx-auto mb-3"
@@ -2027,7 +2134,7 @@
                 <button
                   type="submit"
                   id="submitButton"
-                  class="w-full flex items-center justify-center bg-gradient-to-r from-sky-500 to-sky-600 text-white font-medium py-3 px-4 rounded-lg hover:from-sky-600 hover:to-sky-700 transition duration-300 shadow-lg flex justify-center items-center gap-2"
+                  class="w-full flex items-center justify-center bg-gradient-to-r from-sky-500 to-sky-600 text-white font-medium py-3 px-4 rounded-lg hover:from-sky-600 hover:to-sky-700 transition duration-300 ease-in-out shadow-lg flex justify-center items-center gap-2"
                 >
                   <span
                     id="buttonText"
@@ -2434,6 +2541,117 @@
       if (themeToggleMobile) {
         themeToggleMobile.addEventListener("click", toggleTheme);
       }
+    </script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        AOS.init({
+          duration: 800,
+          easing: "ease-in-out",
+          once: false,
+          mirror: false,
+          disable: "mobile",
+        });
+
+        // Adicionar classe fade-in ao body após carregamento
+        document.body.classList.add("fade-in");
+
+        // Configuração para animar as barras de habilidade
+        const skillsSection = document.getElementById("skills");
+        const skillBars = document.querySelectorAll(".skill-bar");
+
+        if (skillsSection && skillBars.length > 0) {
+          // Flag para controlar se a animação já foi iniciada
+          let animationStarted = false;
+
+          // Inicializar todas as barras com 0%
+          skillBars.forEach((bar) => {
+            bar.style.width = "0%";
+          });
+
+          // Função para animar as barras até o percentual definido
+          const animateSkillBars = () => {
+            if (animationStarted) return;
+            animationStarted = true;
+
+            skillBars.forEach((bar) => {
+              const parentElement = bar.parentElement;
+              if (
+                parentElement &&
+                parentElement.hasAttribute("data-percentage")
+              ) {
+                const percentage =
+                  parentElement.getAttribute("data-percentage");
+
+                // Usar requestAnimationFrame para garantir animação suave
+                requestAnimationFrame(() => {
+                  bar.style.width = percentage;
+                });
+              }
+            });
+
+            // Resetar o flag após a duração da animação completa
+            setTimeout(() => {
+              animationStarted = false;
+            }, 1000);
+          };
+
+          // Usar IntersectionObserver para detectar quando a seção está visível
+          const observer = new IntersectionObserver(
+            (entries) => {
+              const entry = entries[0];
+
+              if (entry.isIntersecting) {
+                // Atrasar ligeiramente para garantir que os estilos CSS sejam aplicados
+                setTimeout(animateSkillBars, 100);
+
+                // Não desconectar o observer para permitir animações repetidas
+                // ao scrollar de volta para a seção
+              } else {
+                // Redefinir barras quando não estiverem visíveis
+                skillBars.forEach((bar) => {
+                  bar.style.width = "0%";
+                });
+              }
+            },
+            {
+              // Configurações do observer
+              threshold: 0.1, // 10% da seção visível é suficiente para iniciar
+              rootMargin: "0px", // Sem margem adicional
+            }
+          );
+
+          // Observar a seção de habilidades
+          observer.observe(skillsSection);
+
+          // Garantir que a animação continue mesmo em dispositivos com scroll rápido
+          skillsSection.addEventListener("inview", animateSkillBars, {
+            passive: true,
+          });
+        }
+      });
+
+      // Força a atualização do AOS durante o scroll
+      window.addEventListener(
+        "scroll",
+        function () {
+          requestAnimationFrame(() => {
+            AOS.refresh();
+          });
+        },
+        { passive: true }
+      );
+
+      // Prevenir bugs em mobile quando a orientação muda
+      window.addEventListener(
+        "resize",
+        function () {
+          requestAnimationFrame(() => {
+            AOS.refresh();
+          });
+        },
+        { passive: true }
+      );
     </script>
   </body>
 </html>
