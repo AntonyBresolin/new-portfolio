@@ -1,0 +1,1819 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Antony Bresolin | Desenvolvedor Full Stack</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+      rel="stylesheet"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.10.3/cdn.min.js"
+      defer
+    ></script>
+
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+        scroll-behavior: smooth;
+      }
+      .gradient-text {
+        background: linear-gradient(90deg, #0ea5e9, #0369a1);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .slide-in-bottom {
+        animation: slide-in-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+          both;
+      }
+      .slide-in-right {
+        animation: slide-in-right 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+      }
+      @keyframes slide-in-bottom {
+        0% {
+          transform: translateY(100px);
+          opacity: 0;
+        }
+        100% {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+      @keyframes slide-in-right {
+        0% {
+          transform: translateX(100px);
+          opacity: 0;
+        }
+        100% {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+      .gradient-border {
+        border: 2px solid transparent;
+        background-clip: padding-box;
+        background-image: linear-gradient(white, white),
+          linear-gradient(90deg, #0ea5e9, #0369a1);
+        background-origin: border-box;
+        background-clip: content-box, border-box;
+      }
+      .skill-bar {
+        transition: width 1s ease-in-out;
+      }
+      .timeline-container {
+        position: relative;
+      }
+      .timeline-container::after {
+        content: "";
+        position: absolute;
+        width: 2px;
+        background-color: #0ea5e9;
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        margin-left: -1px;
+      }
+      .timeline-item {
+        position: relative;
+        background-color: inherit;
+        width: calc(50% - 40px);
+      }
+      .timeline-item::after {
+        content: "";
+        position: absolute;
+        width: 16px;
+        height: 16px;
+        right: -8px;
+        background-color: white;
+        border: 2px solid #0ea5e9;
+        top: 20px;
+        border-radius: 50%;
+        z-index: 1;
+      }
+      .left {
+        left: 0;
+      }
+      .right {
+        left: 50%;
+      }
+      .right::after {
+        left: -8px;
+      }
+      .project-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .project-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
+      .back-to-top {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 99;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+      .back-to-top.visible {
+        opacity: 1;
+      }
+    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav
+      x-data="{ isOpen: false }"
+      class="bg-white shadow-md fixed w-full z-10"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16">
+          <div class="flex-shrink-0 flex items-center">
+            <a href="#" class="text-sky-500 font-bold text-xl">AB</a>
+          </div>
+          <div class="hidden md:block md:flex md:items-center md:space-x-4">
+            <div class="ml-10 flex items-center space-x-8">
+              <a
+                href="#home"
+                class="text-sky-600 hover:text-sky-800 px-3 py-2 rounded-md text-sm font-medium"
+                >Início</a
+              >
+              <a
+                href="#about"
+                class="text-gray-600 hover:text-sky-600 px-3 py-2 rounded-md text-sm font-medium"
+                >Sobre</a
+              >
+              <a
+                href="#experience"
+                class="text-gray-600 hover:text-sky-600 px-3 py-2 rounded-md text-sm font-medium"
+                >Experiência</a
+              >
+              <a
+                href="#skills"
+                class="text-gray-600 hover:text-sky-600 px-3 py-2 rounded-md text-sm font-medium"
+                >Habilidades</a
+              >
+              <a
+                href="#projects"
+                class="text-gray-600 hover:text-sky-600 px-3 py-2 rounded-md text-sm font-medium"
+                >Projetos</a
+              >
+              <a
+                href="#contact"
+                class="text-gray-600 hover:text-sky-600 px-3 py-2 rounded-md text-sm font-medium"
+                >Contato</a
+              >
+            </div>
+          </div>
+          <div class="-mr-2 flex md:hidden">
+            <button
+              @click="isOpen = !isOpen"
+              class="bg-white p-2 rounded-md text-gray-600 hover:text-sky-600 focus:outline-none"
+            >
+              <svg
+                class="h-6 w-6"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  x-show="!isOpen"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+                <path
+                  x-show="isOpen"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div x-show="isOpen" class="md:hidden">
+        <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+          <a
+            href="#home"
+            class="text-sky-600 hover:text-sky-800 block px-3 py-2 rounded-md text-base font-medium"
+            >Início</a
+          >
+          <a
+            href="#about"
+            class="text-gray-600 hover:text-sky-600 block px-3 py-2 rounded-md text-base font-medium"
+            >Sobre</a
+          >
+          <a
+            href="#experience"
+            class="text-gray-600 hover:text-sky-600 block px-3 py-2 rounded-md text-base font-medium"
+            >Experiência</a
+          >
+          <a
+            href="#skills"
+            class="text-gray-600 hover:text-sky-600 block px-3 py-2 rounded-md text-base font-medium"
+            >Habilidades</a
+          >
+          <a
+            href="#projects"
+            class="text-gray-600 hover:text-sky-600 block px-3 py-2 rounded-md text-base font-medium"
+            >Projetos</a
+          >
+          <a
+            href="#contact"
+            class="text-gray-600 hover:text-sky-600 block px-3 py-2 rounded-md text-base font-medium"
+            >Contato</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section
+      id="home"
+      class="min-h-screen bg-gradient-to-r from-sky-50 to-white flex items-center pt-16"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div class="flex flex-col md:flex-row items-center">
+          <div
+            class="md:w-1/2 mb-10 md:mb-0 animate__animated animate__fadeInLeft"
+          >
+            <h1 class="text-4xl md:text-6xl font-bold mb-4 text-gray-800">
+              Olá, sou <span class="gradient-text">Antony Bresolin</span>
+            </h1>
+            <h2 class="text-2xl md:text-3xl font-semibold mb-6 text-gray-600">
+              Desenvolvedor Full Stack
+            </h2>
+            <p class="text-gray-600 mb-8 text-lg">
+              Especialista em Java, React JS e Spring Boot com mais de 4 anos de
+              experiência criando soluções web inovadoras.
+            </p>
+            <div class="flex space-x-4">
+              <a
+                href="#contact"
+                class="bg-sky-500 hover:bg-sky-600 text-white font-medium py-2 px-6 rounded-lg transition duration-300 flex items-center"
+              >
+                <span>Contato</span>
+                <svg
+                  class="w-4 h-4 ml-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M14 5l7 7m0 0l-7 7m7-7H3"
+                  ></path>
+                </svg>
+              </a>
+              <a
+                href="#projects"
+                class="border border-sky-500 text-sky-500 hover:bg-sky-50 font-medium py-2 px-6 rounded-lg transition duration-300"
+                >Ver Projetos</a
+              >
+            </div>
+            <div class="flex mt-8 space-x-4">
+              <a
+                href="https://github.com/AntonyBresolin"
+                target="_blank"
+                class="text-gray-600 hover:text-sky-500 transition duration-300"
+              >
+                <i class="fab fa-github text-2xl"></i>
+              </a>
+              <a
+                href="https://www.linkedin.com/in/antony-henrique-bresolin-b8b621186/"
+                target="_blank"
+                class="text-gray-600 hover:text-sky-500 transition duration-300"
+              >
+                <i class="fab fa-linkedin text-2xl"></i>
+              </a>
+              <a
+                href="mailto:antonybresolin1@gmail.com"
+                class="text-gray-600 hover:text-sky-500 transition duration-300"
+              >
+                <i class="fas fa-envelope text-2xl"></i>
+              </a>
+              <a
+                href="https://wa.me/5544997126310"
+                target="_blank"
+                class="text-gray-600 hover:text-sky-500 transition duration-300"
+              >
+                <i class="fab fa-whatsapp text-2xl"></i>
+              </a>
+            </div>
+          </div>
+          <div
+            class="md:w-1/2 flex justify-center animate__animated animate__fadeInRight"
+          >
+            <div class="relative">
+              <!-- Placeholder para foto de perfil -->
+              <div
+                class="w-64 h-64 lg:w-80 lg:h-80 rounded-full overflow-hidden border-4 border-sky-300 shadow-xl"
+              >
+                <img
+                  src="https://cdn.glitch.global/fb9ad681-7988-4fb5-ac7a-c6bd685ace21/20241027_001359_102.jpg?v=1744432878017"
+                  alt="Foto de Antony Bresolin"
+                  class="object-cover w-full h-full"
+                />
+              </div>
+              <div
+                class="absolute -bottom-5 -right-5 bg-white p-3 rounded-lg shadow-lg"
+              >
+                <div class="text-sky-500 font-bold">4+</div>
+                <div class="text-gray-600 text-xs">
+                  Anos de<br />Experiência
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl font-bold text-gray-800">
+            Sobre <span class="gradient-text">Mim</span>
+          </h2>
+          <div class="w-16 h-1 bg-sky-500 mx-auto mt-2"></div>
+        </div>
+        <div class="flex flex-col md:flex-row items-center">
+          <div
+            class="md:w-1/2 mb-10 md:mb-0 pr-0 md:pr-10"
+            x-data="{ showAll: false }"
+          >
+            <h3 class="text-2xl font-semibold mb-6 text-gray-700">
+              Desenvolvedor Full Stack, apaixonado por tecnologia
+            </h3>
+            <p class="text-gray-600 mb-4">
+              Sou um desenvolvedor Full Stack com mais de 4 anos de experiência
+              no desenvolvimento de sistemas, especializado em tecnologias como
+              JAVA, React JS, JavaScript e Spring Boot.
+            </p>
+            <p class="text-gray-600 mb-4" x-show="showAll">
+              Possuo 8 anos de experiência com Java, começando meu aprendizado
+              no IFPR em 2016, dos quais 4 anos foram dedicados a experiências
+              profissionais. Estou constantemente me atualizando nas versões
+              mais recentes de Java, React e Spring Boot, visando aprimorar
+              minhas habilidades e acompanhar as inovações tecnológicas.
+            </p>
+            <p class="text-gray-600 mb-6" x-show="showAll">
+              Minha experiência inclui o desenvolvimento de sistemas web ERP,
+              análise de dados, manutenção de sistemas legados, e liderança de
+              equipes de desenvolvimento.
+            </p>
+            <button
+              @click="showAll = !showAll"
+              class="text-sky-500 hover:text-sky-700 transition duration-300 font-medium flex items-center"
+            >
+              <span x-text="showAll ? 'Ler menos' : 'Ler mais'"></span>
+              <svg
+                class="w-4 h-4 ml-1"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+                :class="{'rotate-180': showAll}"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"
+                ></path>
+              </svg>
+            </button>
+            <div class="grid grid-cols-2 gap-6 mt-8">
+              <div>
+                <h4 class="font-semibold text-gray-700 mb-2">Nome:</h4>
+                <p class="text-gray-600">Antony Henrique Bresolin</p>
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-700 mb-2">Localização:</h4>
+                <p class="text-gray-600">Assis Chateaubriand, Paraná, Brasil</p>
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-700 mb-2">Email:</h4>
+                <p class="text-gray-600">antonybresolin1@gmail.com</p>
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-700 mb-2">Telefone:</h4>
+                <p class="text-gray-600">(44) 9 9712-6310</p>
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-700 mb-2">Idiomas:</h4>
+                <p class="text-gray-600">Inglês (B1+) / Espanhol (A2)</p>
+              </div>
+              <!-- <div>
+                <h4 class="font-semibold text-gray-700 mb-2">
+                  Disponibilidade:
+                </h4>
+                <p class="text-gray-600">Disponível para novos desafios</p>
+              </div> -->
+            </div>
+            <div class="mt-8">
+              <a
+                href="#"
+                class="bg-sky-500 hover:bg-sky-600 text-white font-medium py-2 px-6 rounded-lg transition duration-300 inline-block"
+                >Download CV</a
+              >
+            </div>
+          </div>
+          <div class="md:w-1/2">
+            <div class="grid grid-cols-2 gap-6">
+              <div
+                class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition duration-300 text-center"
+              >
+                <div
+                  class="w-16 h-16 bg-sky-100 rounded-full flex items-center justify-center mx-auto mb-4"
+                >
+                  <i class="fas fa-code text-sky-500 text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-700 mb-2">
+                  Desenvolvimento Web
+                </h3>
+                <p class="text-gray-600">
+                  Especialista em criar aplicações web modernas e responsivas.
+                </p>
+              </div>
+              <div
+                class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition duration-300 text-center"
+              >
+                <div
+                  class="w-16 h-16 bg-sky-100 rounded-full flex items-center justify-center mx-auto mb-4"
+                >
+                  <i class="fas fa-mobile-alt text-sky-500 text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-700 mb-2">
+                  Aplicações Mobile
+                </h3>
+                <p class="text-gray-600">
+                  Desenvolvimento de aplicativos mobile com React Native.
+                </p>
+              </div>
+              <div
+                class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition duration-300 text-center"
+              >
+                <div
+                  class="w-16 h-16 bg-sky-100 rounded-full flex items-center justify-center mx-auto mb-4"
+                >
+                  <i class="fas fa-server text-sky-500 text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-700 mb-2">
+                  Back-End
+                </h3>
+                <p class="text-gray-600">
+                  Desenvolvimento de APIs RESTful com Java e Spring Boot.
+                </p>
+              </div>
+              <div
+                class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition duration-300 text-center"
+              >
+                <div
+                  class="w-16 h-16 bg-sky-100 rounded-full flex items-center justify-center mx-auto mb-4"
+                >
+                  <i class="fas fa-users text-sky-500 text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-700 mb-2">
+                  Liderança Técnica
+                </h3>
+                <p class="text-gray-600">
+                  Experiência em liderar equipes de desenvolvimento de software.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-20 bg-gray-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl font-bold text-gray-800">
+            Minha <span class="gradient-text">Experiência</span>
+          </h2>
+          <div class="w-16 h-1 bg-sky-500 mx-auto mt-2"></div>
+        </div>
+
+        <div class="relative">
+          <div
+            class="hidden md:block absolute h-full w-0.5 bg-sky-200 left-1/2 transform -translate-x-1/2"
+          ></div>
+
+          <!-- Experience Item 1 -->
+          <div class="flex flex-col md:flex-row mb-12 slide-in-bottom">
+            <div class="md:w-1/2 pr-0 md:pr-12 text-right">
+              <div
+                class="hidden md:block absolute w-4 h-4 rounded-full bg-sky-500 border-4 border-white left-1/2 transform -translate-x-1/2"
+              ></div>
+              <h3 class="text-xl font-semibold text-gray-800">
+                Desenvolvedor FullStack
+              </h3>
+              <p class="text-sky-500 font-medium">Sumersoft Tecnologia</p>
+              <p class="text-gray-600">Julho de 2023 - Presente</p>
+            </div>
+            <div class="md:w-1/2 pl-0 md:pl-12 mt-4 md:mt-0">
+              <div
+                class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300"
+              >
+                <ul class="text-gray-600 space-y-2">
+                  <li class="flex items-start">
+                    <svg
+                      class="w-5 h-5 text-sky-500 mr-2 mt-0.5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M5 13l4 4L19 7"
+                      ></path>
+                    </svg>
+                    Desenvolvimento de sistemas web ERP para gestão de
+                    dispositivos embarcados
+                  </li>
+                  <li class="flex items-start">
+                    <svg
+                      class="w-5 h-5 text-sky-500 mr-2 mt-0.5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M5 13l4 4L19 7"
+                      ></path>
+                    </svg>
+                    Sistemas de análise de dados e geração de relatórios
+                  </li>
+                  <li class="flex items-start">
+                    <svg
+                      class="w-5 h-5 text-sky-500 mr-2 mt-0.5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M5 13l4 4L19 7"
+                      ></path>
+                    </svg>
+                    Manutenção de sistemas legados complexos
+                  </li>
+                  <li class="flex items-start">
+                    <svg
+                      class="w-5 h-5 text-sky-500 mr-2 mt-0.5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M5 13l4 4L19 7"
+                      ></path>
+                    </svg>
+                    Desenvolvimento e arquitetura de back-end e front-end
+                  </li>
+                </ul>
+                <div class="mt-4">
+                  <span
+                    class="inline-block bg-sky-100 text-sky-600 text-xs px-2 py-1 rounded-full mr-2 mb-2"
+                    >React JS</span
+                  >
+                  <span
+                    class="inline-block bg-sky-100 text-sky-600 text-xs px-2 py-1 rounded-full mr-2 mb-2"
+                    >Java</span
+                  >
+                  <span
+                    class="inline-block bg-sky-100 text-sky-600 text-xs px-2 py-1 rounded-full mr-2 mb-2"
+                    >MongoDB</span
+                  >
+                  <span
+                    class="inline-block bg-sky-100 text-sky-600 text-xs px-2 py-1 rounded-full mr-2 mb-2"
+                    >Tailwind</span
+                  >
+                  <span
+                    class="inline-block bg-sky-100 text-sky-600 text-xs px-2 py-1 rounded-full mr-2 mb-2"
+                    >Docker</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Experience Item 2 -->
+          <div class="flex flex-col md:flex-row mb-12 slide-in-bottom">
+            <div class="md:w-1/2 pr-0 md:pr-12 text-right order-1 md:order-1">
+              <div
+                class="hidden md:block absolute w-4 h-4 rounded-full bg-sky-500 border-4 border-white left-1/2 transform -translate-x-1/2"
+              ></div>
+              <h3 class="text-xl font-semibold text-gray-800">
+                Desenvolvedor FullStack
+              </h3>
+              <p class="text-sky-500 font-medium">
+                ESFERA PRÓ SOLUÇÕES EMPRESARIAIS
+              </p>
+              <p class="text-gray-600">Agosto de 2023 - Julho de 2024</p>
+            </div>
+            <div class="md:w-1/2 pl-0 md:pl-12 mt-4 md:mt-0 order-2 md:order-2">
+              <div
+                class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300"
+              >
+                <ul class="text-gray-600 space-y-2">
+                  <li class="flex items-start">
+                    <svg
+                      class="w-5 h-5 text-sky-500 mr-2 mt-0.5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M5 13l4 4L19 7"
+                      ></path>
+                    </svg>
+                    Desenvolvimento completo de um MVP de aplicação de CRM
+                  </li>
+                  <li class="flex items-start">
+                    <svg
+                      class="w-5 h-5 text-sky-500 mr-2 mt-0.5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M5 13l4 4L19 7"
+                      ></path>
+                    </svg>
+                    Liderança de 2 equipes de 4 pessoas cada
+                  </li>
+                  <li class="flex items-start">
+                    <svg
+                      class="w-5 h-5 text-sky-500 mr-2 mt-0.5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M5 13l4 4L19 7"
+                      ></path>
+                    </svg>
+                    Participação em todas as etapas do desenvolvimento
+                  </li>
+                </ul>
+                <div class="mt-4">
+                  <span
+                    class="inline-block bg-sky-100 text-sky-600 text-xs px-2 py-1 rounded-full mr-2 mb-2"
+                    >Java</span
+                  >
+                  <span
+                    class="inline-block bg-sky-100 text-sky-600 text-xs px-2 py-1 rounded-full mr-2 mb-2"
+                    >Spring Boot</span
+                  >
+                  <span
+                    class="inline-block bg-sky-100 text-sky-600 text-xs px-2 py-1 rounded-full mr-2 mb-2"
+                    >JavaScript</span
+                  >
+                  <span
+                    class="inline-block bg-sky-100 text-sky-600 text-xs px-2 py-1 rounded-full mr-2 mb-2"
+                    >MySQL</span
+                  >
+                  <span
+                    class="inline-block bg-sky-100 text-sky-600 text-xs px-2 py-1 rounded-full mr-2 mb-2"
+                    >Docker</span
+                  >
+                  <span
+                    class="inline-block bg-sky-100 text-sky-600 text-xs px-2 py-1 rounded-full mr-2 mb-2"
+                    >Tailwind</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Experience Item 3 -->
+          <div class="flex flex-col md:flex-row mb-12 slide-in-bottom">
+            <div class="md:w-1/2 pr-0 md:pr-12 text-right">
+              <div
+                class="hidden md:block absolute w-4 h-4 rounded-full bg-sky-500 border-4 border-white left-1/2 transform -translate-x-1/2"
+              ></div>
+              <h3 class="text-xl font-semibold text-gray-800">Tech Lead</h3>
+              <p class="text-sky-500 font-medium">Tendyaaz Sistemas</p>
+              <p class="text-gray-600">Março de 2022 - Julho de 2022</p>
+            </div>
+            <div class="md:w-1/2 pl-0 md:pl-12 mt-4 md:mt-0">
+              <div
+                class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300"
+              >
+                <ul class="text-gray-600 space-y-2">
+                  <li class="flex items-start">
+                    <svg
+                      class="w-5 h-5 text-sky-500 mr-2 mt-0.5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M5 13l4 4L19 7"
+                      ></path>
+                    </svg>
+                    Liderança de equipe para desenvolvimento de web app de
+                    marketplace
+                  </li>
+                  <li class="flex items-start">
+                    <svg
+                      class="w-5 h-5 text-sky-500 mr-2 mt-0.5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M5 13l4 4L19 7"
+                      ></path>
+                    </svg>
+                    Desenvolvimento de novas features e manutenção em sistemas
+                    legados
+                  </li>
+                  <li class="flex items-start">
+                    <svg
+                      class="w-5 h-5 text-sky-500 mr-2 mt-0.5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M5 13l4 4L19 7"
+                      ></path>
+                    </svg>
+                    Consultoria de desenvolvimento de software como serviço
+                  </li>
+                </ul>
+                <div class="mt-4">
+                  <span
+                    class="inline-block bg-sky-100 text-sky-600 text-xs px-2 py-1 rounded-full mr-2 mb-2"
+                    >HTML</span
+                  >
+                  <span
+                    class="inline-block bg-sky-100 text-sky-600 text-xs px-2 py-1 rounded-full mr-2 mb-2"
+                    >CSS</span
+                  >
+                  <span
+                    class="inline-block bg-sky-100 text-sky-600 text-xs px-2 py-1 rounded-full mr-2 mb-2"
+                    >JavaScript</span
+                  >
+                  <span
+                    class="inline-block bg-sky-100 text-sky-600 text-xs px-2 py-1 rounded-full mr-2 mb-2"
+                    >Firebase</span
+                  >
+                  <span
+                    class="inline-block bg-sky-100 text-sky-600 text-xs px-2 py-1 rounded-full mr-2 mb-2"
+                    >Node.js</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Experience Item 4 -->
+          <div class="flex flex-col md:flex-row mb-12 slide-in-bottom">
+            <div class="md:w-1/2 pr-0 md:pr-12 text-right order-1 md:order-1">
+              <div
+                class="hidden md:block absolute w-4 h-4 rounded-full bg-sky-500 border-4 border-white left-1/2 transform -translate-x-1/2"
+              ></div>
+              <h3 class="text-xl font-semibold text-gray-800">
+                Desenvolvedor FullStack
+              </h3>
+              <p class="text-sky-500 font-medium">Freelancer</p>
+              <p class="text-gray-600">Janeiro de 2018 - Fevereiro de 2022</p>
+            </div>
+            <div class="md:w-1/2 pl-0 md:pl-12 mt-4 md:mt-0 order-2 md:order-2">
+              <div
+                class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300"
+              >
+                <ul class="text-gray-600 space-y-2">
+                  <li class="flex items-start">
+                    <svg
+                      class="w-5 h-5 text-sky-500 mr-2 mt-0.5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M5 13l4 4L19 7"
+                      ></path>
+                    </svg>
+                    Desenvolvimento de landing pages, bots e sistemas
+                  </li>
+                  <li class="flex items-start">
+                    <svg
+                      class="w-5 h-5 text-sky-500 mr-2 mt-0.5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M5 13l4 4L19 7"
+                      ></path>
+                    </svg>
+                    Projetos relacionados a criptomoedas e blockchain
+                  </li>
+                  <li class="flex items-start">
+                    <svg
+                      class="w-5 h-5 text-sky-500 mr-2 mt-0.5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M5 13l4 4L19 7"
+                      ></path>
+                    </svg>
+                    Mentoria e aulas de programação
+                  </li>
+                </ul>
+                <div class="mt-4">
+                  <span
+                    class="inline-block bg-sky-100 text-sky-600 text-xs px-2 py-1 rounded-full mr-2 mb-2"
+                    >Java</span
+                  >
+                  <span
+                    class="inline-block bg-sky-100 text-sky-600 text-xs px-2 py-1 rounded-full mr-2 mb-2"
+                    >MySQL</span
+                  >
+                  <span
+                    class="inline-block bg-sky-100 text-sky-600 text-xs px-2 py-1 rounded-full mr-2 mb-2"
+                    >Firebase</span
+                  >
+                  <span
+                    class="inline-block bg-sky-100 text-sky-600 text-xs px-2 py-1 rounded-full mr-2 mb-2"
+                    >Node.js</span
+                  >
+                  <span
+                    class="inline-block bg-sky-100 text-sky-600 text-xs px-2 py-1 rounded-full mr-2 mb-2"
+                    >Solidity</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl font-bold text-gray-800">
+            Minhas <span class="gradient-text">Habilidades</span>
+          </h2>
+          <div class="w-16 h-1 bg-sky-500 mx-auto mt-2"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+          <div>
+            <h3 class="text-2xl font-semibold mb-6 text-gray-700">
+              Habilidades Técnicas
+            </h3>
+
+            <div class="mb-6">
+              <div class="flex justify-between mb-1">
+                <span class="text-gray-700 font-medium">Java</span>
+                <span class="text-sky-500 font-medium">90%</span>
+              </div>
+              <div class="h-2 bg-gray-200 rounded-full">
+                <div
+                  class="h-2 bg-gradient-to-r from-sky-400 to-sky-600 rounded-full skill-bar w-[90%]"
+                ></div>
+              </div>
+            </div>
+
+            <div class="mb-6">
+              <div class="flex justify-between mb-1">
+                <span class="text-gray-700 font-medium">React JS</span>
+                <span class="text-sky-500 font-medium">85%</span>
+              </div>
+              <div class="h-2 bg-gray-200 rounded-full">
+                <div
+                  class="h-2 bg-gradient-to-r from-sky-400 to-sky-600 rounded-full skill-bar w-[85%]"
+                ></div>
+              </div>
+            </div>
+
+            <div class="mb-6">
+              <div class="flex justify-between mb-1">
+                <span class="text-gray-700 font-medium">JavaScript</span>
+                <span class="text-sky-500 font-medium">88%</span>
+              </div>
+              <div class="h-2 bg-gray-200 rounded-full">
+                <div
+                  class="h-2 bg-gradient-to-r from-sky-400 to-sky-600 rounded-full skill-bar w-[88%]"
+                ></div>
+              </div>
+            </div>
+
+            <div class="mb-6">
+              <div class="flex justify-between mb-1">
+                <span class="text-gray-700 font-medium">HTML & CSS</span>
+                <span class="text-sky-500 font-medium">90%</span>
+              </div>
+              <div class="h-2 bg-gray-200 rounded-full">
+                <div
+                  class="h-2 bg-gradient-to-r from-sky-400 to-sky-600 rounded-full skill-bar w-[90%]"
+                ></div>
+              </div>
+            </div>
+
+            <div class="mb-6">
+              <div class="flex justify-between mb-1">
+                <span class="text-gray-700 font-medium">Spring Boot</span>
+                <span class="text-sky-500 font-medium">85%</span>
+              </div>
+              <div class="h-2 bg-gray-200 rounded-full">
+                <div
+                  class="h-2 bg-gradient-to-r from-sky-400 to-sky-600 rounded-full skill-bar w-[85%]"
+                ></div>
+              </div>
+            </div>
+
+            <div class="mb-6">
+              <div class="flex justify-between mb-1">
+                <span class="text-gray-700 font-medium">Node.js</span>
+                <span class="text-sky-500 font-medium">80%</span>
+              </div>
+              <div class="h-2 bg-gray-200 rounded-full">
+                <div
+                  class="h-2 bg-gradient-to-r from-sky-400 to-sky-600 rounded-full skill-bar w-[80%]"
+                ></div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-2xl font-semibold mb-6 text-gray-700">
+              Ferramentas & Outras Habilidades
+            </h3>
+
+            <div class="grid grid-cols-3 gap-4">
+              <div
+                class="bg-white border border-gray-200 rounded-lg p-4 text-center hover:shadow-md transition duration-300"
+              >
+                <div
+                  class="w-12 h-12 bg-sky-100 rounded-full flex items-center justify-center mx-auto mb-3"
+                >
+                  <i class="fab fa-docker text-sky-500 text-xl"></i>
+                </div>
+                <h4 class="text-gray-700 font-medium">Docker</h4>
+              </div>
+
+              <div
+                class="bg-white border border-gray-200 rounded-lg p-4 text-center hover:shadow-md transition duration-300"
+              >
+                <div
+                  class="w-12 h-12 bg-sky-100 rounded-full flex items-center justify-center mx-auto mb-3"
+                >
+                  <i class="fab fa-git-alt text-sky-500 text-xl"></i>
+                </div>
+                <h4 class="text-gray-700 font-medium">Git</h4>
+              </div>
+
+              <div
+                class="bg-white border border-gray-200 rounded-lg p-4 text-center hover:shadow-md transition duration-300"
+              >
+                <div
+                  class="w-12 h-12 bg-sky-100 rounded-full flex items-center justify-center mx-auto mb-3"
+                >
+                  <i class="fab fa-github text-sky-500 text-xl"></i>
+                </div>
+                <h4 class="text-gray-700 font-medium">GitHub</h4>
+              </div>
+
+              <div
+                class="bg-white border border-gray-200 rounded-lg p-4 text-center hover:shadow-md transition duration-300"
+              >
+                <div
+                  class="w-12 h-12 bg-sky-100 rounded-full flex items-center justify-center mx-auto mb-3"
+                >
+                  <i class="fab fa-figma text-sky-500 text-xl"></i>
+                </div>
+                <h4 class="text-gray-700 font-medium">Figma</h4>
+              </div>
+
+              <div
+                class="bg-white border border-gray-200 rounded-lg p-4 text-center hover:shadow-md transition duration-300"
+              >
+                <div
+                  class="w-12 h-12 bg-sky-100 rounded-full flex items-center justify-center mx-auto mb-3"
+                >
+                  <i class="fas fa-database text-sky-500 text-xl"></i>
+                </div>
+                <h4 class="text-gray-700 font-medium">MySQL</h4>
+              </div>
+
+              <div
+                class="bg-white border border-gray-200 rounded-lg p-4 text-center hover:shadow-md transition duration-300"
+              >
+                <div
+                  class="w-12 h-12 bg-sky-100 rounded-full flex items-center justify-center mx-auto mb-3"
+                >
+                  <i class="fas fa-database text-sky-500 text-xl"></i>
+                </div>
+                <h4 class="text-gray-700 font-medium">MongoDB</h4>
+              </div>
+
+              <div
+                class="bg-white border border-gray-200 rounded-lg p-4 text-center hover:shadow-md transition duration-300"
+              >
+                <div
+                  class="w-12 h-12 bg-sky-100 rounded-full flex items-center justify-center mx-auto mb-3"
+                >
+                  <i class="fab fa-react text-sky-500 text-xl"></i>
+                </div>
+                <h4 class="text-gray-700 font-medium">React Native</h4>
+              </div>
+
+              <div
+                class="bg-white border border-gray-200 rounded-lg p-4 text-center hover:shadow-md transition duration-300"
+              >
+                <div
+                  class="w-12 h-12 bg-sky-100 rounded-full flex items-center justify-center mx-auto mb-3"
+                >
+                  <i class="fab fa-vaadin text-sky-500 text-xl"></i>
+                </div>
+                <h4 class="text-gray-700 font-medium">Vaadin</h4>
+              </div>
+
+              <div
+                class="bg-white border border-gray-200 rounded-lg p-4 text-center hover:shadow-md transition duration-300"
+              >
+                <div
+                  class="w-12 h-12 bg-sky-100 rounded-full flex items-center justify-center mx-auto mb-3"
+                >
+                  <i class="fab fa-aws text-sky-500 text-xl"></i>
+                </div>
+                <h4 class="text-gray-700 font-medium">Firebase</h4>
+              </div>
+            </div>
+
+            <h3 class="text-2xl font-semibold mt-10 mb-6 text-gray-700">
+              Soft Skills
+            </h3>
+            <div class="flex flex-wrap">
+              <span
+                class="bg-sky-100 text-sky-600 px-4 py-2 rounded-full mr-3 mb-3"
+                >Liderança</span
+              >
+              <span
+                class="bg-sky-100 text-sky-600 px-4 py-2 rounded-full mr-3 mb-3"
+                >Oratória</span
+              >
+              <span
+                class="bg-sky-100 text-sky-600 px-4 py-2 rounded-full mr-3 mb-3"
+                >Gestão de pessoas</span
+              >
+              <span
+                class="bg-sky-100 text-sky-600 px-4 py-2 rounded-full mr-3 mb-3"
+                >Comunicação</span
+              >
+              <span
+                class="bg-sky-100 text-sky-600 px-4 py-2 rounded-full mr-3 mb-3"
+                >Restauração</span
+              >
+              <span
+                class="bg-sky-100 text-sky-600 px-4 py-2 rounded-full mr-3 mb-3"
+                >Estratégico</span
+              >
+              <span
+                class="bg-sky-100 text-sky-600 px-4 py-2 rounded-full mr-3 mb-3"
+                >Realização</span
+              >
+              <span
+                class="bg-sky-100 text-sky-600 px-4 py-2 rounded-full mr-3 mb-3"
+                >Ativação</span
+              >
+              <span
+                class="bg-sky-100 text-sky-600 px-4 py-2 rounded-full mr-3 mb-3"
+                >Analítico</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 bg-gray-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl font-bold text-gray-800">
+            Meus <span class="gradient-text">Projetos</span>
+          </h2>
+          <div class="w-16 h-1 bg-sky-500 mx-auto mt-2"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Project 1 -->
+          <div
+            class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 project-card"
+          >
+            <div class="h-48 bg-sky-100 flex items-center justify-center">
+              <img
+                src="https://cdn.glitch.global/fb9ad681-7988-4fb5-ac7a-c6bd685ace21/sementes.png?v=1744432898839"
+                alt="Sempre-app Screenshot"
+                class="object-cover w-full h-full"
+              />
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-gray-800 mb-2">
+                Sempre-app
+              </h3>
+              <p class="text-gray-600 mb-4">
+                Aplicativo para gestão de planilhas de croqui para controle de
+                área de plantio de amostras de sementes desenvolvido para a
+                empresa SEMPRE SEMENTES.
+              </p>
+              <div class="flex flex-wrap mb-4">
+                <span
+                  class="bg-sky-100 text-sky-600 text-xs px-2 py-1 rounded-full mr-2 mb-2"
+                  >React Native</span
+                >
+                <span
+                  class="bg-sky-100 text-sky-600 text-xs px-2 py-1 rounded-full mr-2 mb-2"
+                  >JavaScript</span
+                >
+                <span
+                  class="bg-sky-100 text-sky-600 text-xs px-2 py-1 rounded-full mr-2 mb-2"
+                  >Async Storage</span
+                >
+                <span
+                  class="bg-sky-100 text-sky-600 text-xs px-2 py-1 rounded-full mr-2 mb-2"
+                  >Figma</span
+                >
+              </div>
+              <a
+                href="https://github.com/AntonyBresolin/Sempre-app"
+                target="_blank"
+                class="text-sky-500 hover:text-sky-700 transition duration-300 font-medium flex items-center"
+              >
+                <span>Ver no GitHub</span>
+                <svg
+                  class="w-4 h-4 ml-1"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                  ></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Project 2 -->
+          <div
+            class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 project-card"
+          >
+            <div class="h-48 bg-sky-100 flex items-center justify-center">
+              <img
+                src="https://cdn.glitch.global/fb9ad681-7988-4fb5-ac7a-c6bd685ace21/esfera.png?v=1744432888038"
+                alt="Esfera Pro Screenshot"
+                class="object-cover w-full h-full"
+              />
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-gray-800 mb-2">
+                Esfera Pró: Sistema de CRM
+              </h3>
+              <p class="text-gray-600 mb-4">
+                Sistema web de CRM para gerenciamento de propostas de
+                telemarketing com foco em melhorar a gestão de clientes e leads.
+              </p>
+              <div class="flex flex-wrap mb-4">
+                <span
+                  class="bg-sky-100 text-sky-600 text-xs px-2 py-1 rounded-full mr-2 mb-2"
+                  >Spring Boot</span
+                >
+                <span
+                  class="bg-sky-100 text-sky-600 text-xs px-2 py-1 rounded-full mr-2 mb-2"
+                  >Java 17</span
+                >
+                <span
+                  class="bg-sky-100 text-sky-600 text-xs px-2 py-1 rounded-full mr-2 mb-2"
+                  >MySQL</span
+                >
+                <span
+                  class="bg-sky-100 text-sky-600 text-xs px-2 py-1 rounded-full mr-2 mb-2"
+                  >Thymeleaf</span
+                >
+                <span
+                  class="bg-sky-100 text-sky-600 text-xs px-2 py-1 rounded-full mr-2 mb-2"
+                  >Testes Unitários</span
+                >
+              </div>
+              <a
+                href="https://github.com/AntonyBresolin/esfera-g2"
+                target="_blank"
+                class="text-sky-500 hover:text-sky-700 transition duration-300 font-medium flex items-center"
+              >
+                <span>Ver no GitHub</span>
+                <svg
+                  class="w-4 h-4 ml-1"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                  ></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Project 3 -->
+          <div
+            class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 project-card"
+          >
+            <div class="h-48 bg-sky-100 flex items-center justify-center">
+              <img
+                src="https://cdn.glitch.global/fb9ad681-7988-4fb5-ac7a-c6bd685ace21/queijos-finos.png?v=1744432894113"
+                alt="Web ERP Screenshot"
+                class="object-cover w-full h-full"
+              />
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-gray-800 mb-2">
+                Queijos Finos
+              </h3>
+              <p class="text-gray-600 mb-4">
+                Sistema completo para gerenciamento de propriedades envolvidas
+                no Projeto de Queijos Finos.
+              </p>
+              <div class="flex flex-wrap mb-4">
+                <span
+                  class="bg-sky-100 text-sky-600 text-xs px-2 py-1 rounded-full mr-2 mb-2"
+                  >Flutter</span
+                >
+                <span
+                  class="bg-sky-100 text-sky-600 text-xs px-2 py-1 rounded-full mr-2 mb-2"
+                  >Java</span
+                >
+                <span
+                  class="bg-sky-100 text-sky-600 text-xs px-2 py-1 rounded-full mr-2 mb-2"
+                  >MySQL</span
+                >
+                <span
+                  class="bg-sky-100 text-sky-600 text-xs px-2 py-1 rounded-full mr-2 mb-2"
+                  >Mobile</span
+                >
+                <span
+                  class="bg-sky-100 text-sky-600 text-xs px-2 py-1 rounded-full mr-2 mb-2"
+                  >Web</span
+                >
+                <span
+                  class="bg-sky-100 text-sky-600 text-xs px-2 py-1 rounded-full mr-2 mb-2"
+                  >Docker</span
+                >
+                <span
+                  class="bg-sky-100 text-sky-600 text-xs px-2 py-1 rounded-full mr-2 mb-2"
+                  >Testes Unitários
+                </span>
+              </div>
+              <a
+                href="https://github.com/Os-Cupinxa/Queijos-Finos"
+                target="_blank"
+                class="text-sky-500 hover:text-sky-700 transition duration-300 font-medium flex items-center"
+              >
+                <span>Ver no GitHub</span>
+                <svg
+                  class="w-4 h-4 ml-1"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                  ></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center mt-12">
+          <a
+            href="https://github.com/AntonyBresolin"
+            target="_blank"
+            class="bg-sky-500 hover:bg-sky-600 text-white font-medium py-2 px-6 rounded-lg transition duration-300 inline-flex items-center"
+          >
+            <i class="fab fa-github mr-2"></i>
+            <span>Ver todos os projetos no GitHub</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl font-bold text-gray-800">
+            Entre em <span class="gradient-text">Contato</span>
+          </h2>
+          <div class="w-16 h-1 bg-sky-500 mx-auto mt-2"></div>
+        </div>
+
+        <div class="flex flex-col md:flex-row">
+          <div class="md:w-1/2 pr-0 md:pr-10 mb-10 md:mb-0">
+            <h3 class="text-2xl font-semibold mb-6 text-gray-700">
+              Vamos conversar!
+            </h3>
+            <p class="text-gray-600 mb-8">
+              Estou disponível para novos projetos, oportunidades e parcerias.
+              Entre em contato comigo por qualquer um dos canais abaixo ou
+              preencha o formulário.
+            </p>
+
+            <div class="flex items-start mb-6">
+              <div
+                class="w-12 h-12 bg-sky-100 rounded-full flex items-center justify-center mr-4"
+              >
+                <i class="fas fa-envelope text-sky-500 text-xl"></i>
+              </div>
+              <div>
+                <h4 class="font-medium text-gray-700">Email</h4>
+                <a
+                  href="mailto:antonybresolin1@gmail.com"
+                  class="text-sky-500 hover:underline"
+                  >antonybresolin1@gmail.com</a
+                >
+              </div>
+            </div>
+
+            <div class="flex items-start mb-6">
+              <div
+                class="w-12 h-12 bg-sky-100 rounded-full flex items-center justify-center mr-4"
+              >
+                <i class="fas fa-phone text-sky-500 text-xl"></i>
+              </div>
+              <div>
+                <h4 class="font-medium text-gray-700">Telefone</h4>
+                <a
+                  href="tel:+5544997126310"
+                  class="text-sky-500 hover:underline"
+                  >(44) 9 9712-6310</a
+                >
+              </div>
+            </div>
+
+            <div class="flex items-start mb-6">
+              <div
+                class="w-12 h-12 bg-sky-100 rounded-full flex items-center justify-center mr-4"
+              >
+                <i class="fab fa-linkedin-in text-sky-500 text-xl"></i>
+              </div>
+              <div>
+                <h4 class="font-medium text-gray-700">LinkedIn</h4>
+                <a
+                  href="https://www.linkedin.com/in/antony-henrique-bresolin-b8b621186/"
+                  target="_blank"
+                  class="text-sky-500 hover:underline"
+                  >antony-henrique-bresolin</a
+                >
+              </div>
+            </div>
+
+            <div class="flex items-start">
+              <div
+                class="w-12 h-12 bg-sky-100 rounded-full flex items-center justify-center mr-4"
+              >
+                <i class="fab fa-github text-sky-500 text-xl"></i>
+              </div>
+              <div>
+                <h4 class="font-medium text-gray-700">GitHub</h4>
+                <a
+                  href="https://github.com/AntonyBresolin"
+                  target="_blank"
+                  class="text-sky-500 hover:underline"
+                  >AntonyBresolin</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="md:w-1/2">
+            <div class="bg-white p-8 rounded-lg shadow-md gradient-border">
+              <form class="p-4" id="contactForm">
+                <div class="mb-6">
+                  <label for="name" class="block text-gray-700 font-medium mb-2"
+                    >Nome</label
+                  >
+                  <input
+                    type="text"
+                    id="name"
+                    name="nome"
+                    required
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500"
+                  />
+                </div>
+
+                <div class="mb-6">
+                  <label
+                    for="email"
+                    class="block text-gray-700 font-medium mb-2"
+                    >Email</label
+                  >
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500"
+                  />
+                </div>
+
+                <div class="mb-6">
+                  <label
+                    for="subject"
+                    class="block text-gray-700 font-medium mb-2"
+                    >Telefone</label
+                  >
+                  <input
+                    type="text"
+                    id="subject"
+                    name="telefone"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500"
+                  />
+                </div>
+
+                <div class="mb-6">
+                  <label
+                    for="message"
+                    class="block text-gray-700 font-medium mb-2"
+                    >Mensagem</label
+                  >
+                  <textarea
+                    id="message"
+                    name="mensagem"
+                    rows="5"
+                    required
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500"
+                  ></textarea>
+                </div>
+
+                <button
+                  type="submit"
+                  id="submitButton"
+                  class="w-full flex items-center justify-center bg-gradient-to-r from-sky-500 to-sky-600 text-white font-medium py-3 px-4 rounded-lg hover:from-sky-600 hover:to-sky-700 transition duration-300 shadow-lg flex justify-center items-center gap-2"
+                >
+                  <span
+                    id="buttonText"
+                    class="flex items-center justify-center gap-x-2"
+                    >Enviar mensagem</span
+                  >
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div
+          class="flex flex-col md:flex-row justify-between items-center border-b border-gray-700 pb-8 mb-8"
+        >
+          <div class="mb-8 md:mb-0">
+            <h3 class="text-3xl font-bold mb-2">
+              Antony<span class="text-sky-400">Bresolin</span>
+            </h3>
+            <p class="text-gray-400">Desenvolvedor Full Stack</p>
+          </div>
+
+          <div class="flex flex-wrap justify-center space-x-6">
+            <a
+              href="#hero"
+              class="text-gray-400 hover:text-white transition duration-300 mb-4 md:mb-0"
+              >Início</a
+            >
+            <a
+              href="#about"
+              class="text-gray-400 hover:text-white transition duration-300 mb-4 md:mb-0"
+              >Sobre</a
+            >
+            <a
+              href="#experience"
+              class="text-gray-400 hover:text-white transition duration-300 mb-4 md:mb-0"
+              >Experiência</a
+            >
+            <a
+              href="#skills"
+              class="text-gray-400 hover:text-white transition duration-300 mb-4 md:mb-0"
+              >Habilidades</a
+            >
+            <a
+              href="#projects"
+              class="text-gray-400 hover:text-white transition duration-300 mb-4 md:mb-0"
+              >Projetos</a
+            >
+            <a
+              href="#contact"
+              class="text-gray-400 hover:text-white transition duration-300 mb-4 md:mb-0"
+              >Contato</a
+            >
+          </div>
+        </div>
+
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <p class="text-gray-400 mb-4 md:mb-0">
+            &copy; 2025 Antony Bresolin. Todos os direitos reservados.
+          </p>
+
+          <div class="flex space-x-4">
+            <a
+              href="https://github.com/AntonyBresolin"
+              target="_blank"
+              class="text-gray-400 hover:text-white transition duration-300"
+            >
+              <i class="fab fa-github text-xl"></i>
+            </a>
+            <a
+              href="https://www.linkedin.com/in/antony-henrique-bresolin-b8b621186/"
+              target="_blank"
+              class="text-gray-400 hover:text-white transition duration-300"
+            >
+              <i class="fab fa-linkedin-in text-xl"></i>
+            </a>
+            <a
+              href="mailto:antonybresolin1@gmail.com"
+              class="text-gray-400 hover:text-white transition duration-300"
+            >
+              <i class="fas fa-envelope text-xl"></i>
+            </a>
+            <a
+              href="tel:+5544997126310"
+              class="text-gray-400 hover:text-white transition duration-300"
+            >
+              <i class="fas fa-phone text-xl"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button
+      id="backToTop"
+      class="back-to-top bg-sky-500 text-sky-500 hover:bg-sky-600 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg transition duration-300"
+    >
+      <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- JavaScript -->
+    <script>
+      // Back to Top Button
+      const backToTopButton = document.getElementById("backToTop");
+
+      window.addEventListener("scroll", () => {
+        if (window.pageYOffset > 300) {
+          backToTopButton.classList.add("visible");
+        } else {
+          backToTopButton.classList.remove("visible");
+        }
+      });
+
+      backToTopButton.addEventListener("click", () => {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      });
+
+      // Animate Skill Bars on Scroll
+      function animateSkills() {
+        const skillBars = document.querySelectorAll(".skill-bar");
+        const skillsSection = document.getElementById("skills");
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                skillBars.forEach((bar) => {
+                  const percentage = bar.getAttribute("data-percentage");
+                  bar.style.width = percentage;
+                });
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.5 }
+        );
+
+        observer.observe(skillsSection);
+      }
+
+      // Animate elements on scroll
+      function animateOnScroll() {
+        const animatedElements =
+          document.querySelectorAll(".animate-on-scroll");
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const element = entry.target;
+                const animation = element.getAttribute("data-animation");
+                element.classList.add(animation);
+                observer.unobserve(element);
+              }
+            });
+          },
+          { threshold: 0.1 }
+        );
+
+        animatedElements.forEach((element) => {
+          observer.observe(element);
+        });
+      }
+
+      // Mobile Navigation
+      function setupMobileNav() {
+        const mobileMenu = document.getElementById("mobileMenu");
+        const mobileMenuLinks = document.querySelectorAll("#mobileMenu a");
+
+        mobileMenuLinks.forEach((link) => {
+          link.addEventListener("click", () => {
+            mobileMenu.classList.add("hidden");
+          });
+        });
+      }
+
+      // Initialize
+      document.addEventListener("DOMContentLoaded", () => {
+        animateSkills();
+        animateOnScroll();
+        setupMobileNav();
+
+        // Add smooth scrolling to all links
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+          anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+
+            const target = document.querySelector(this.getAttribute("href"));
+            if (target) {
+              window.scrollTo({
+                top: target.offsetTop,
+                behavior: "smooth",
+              });
+            }
+          });
+        });
+      });
+    </script>
+
+    <script>
+      const form = document.getElementById("contactForm");
+      const button = document.getElementById("submitButton");
+      const buttonText = document.getElementById("buttonText");
+
+      form.addEventListener("submit", async function (e) {
+        e.preventDefault();
+
+        // Set loading state
+        button.disabled = true;
+        buttonText.innerHTML = `
+      <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path>
+      </svg>
+    `;
+
+        const nome = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        const telefone = document.getElementById("subject").value;
+        const mensagem = document.getElementById("message").value;
+
+        try {
+          const response = await fetch("/send", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ nome, email, telefone, mensagem }),
+          });
+
+          const result = await response.text();
+          alert(result);
+
+          // Sucesso: mostrar ícone de check
+          buttonText.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
+        </svg>
+        <div>Enviado!</div>
+      `;
+
+          // Aguardar 2 segundos e resetar botão
+          setTimeout(() => {
+            button.disabled = false;
+            buttonText.textContent = "Enviar mensagem";
+            form.reset();
+          }, 2000);
+        } catch (err) {
+          console.error("Erro ao enviar:", err);
+          alert("Erro ao enviar o email.");
+
+          // Resetar botão em caso de erro
+          button.disabled = false;
+          buttonText.textContent = "Enviar mensagem";
+        }
+      });
+    </script>
+  </body>
+</html>
