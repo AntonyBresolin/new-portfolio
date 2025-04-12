@@ -1,9 +1,15 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Antony Bresolin | Desenvolvedor Full Stack</title>
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="https://cdn.glitch.global/fb9ad681-7988-4fb5-ac7a-c6bd685ace21/icon.ico?v=1744435181197"
+    />
+
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css"
       rel="stylesheet"
@@ -35,6 +41,14 @@
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
       }
+
+      /* Dark mode adjustments */
+      .dark .gradient-text {
+        background: linear-gradient(90deg, #38bdf8, #0ea5e9);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
       .slide-in-bottom {
         animation: slide-in-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)
           both;
@@ -70,6 +84,13 @@
         background-origin: border-box;
         background-clip: content-box, border-box;
       }
+
+      /* Dark mode gradient border */
+      .dark .gradient-border {
+        background-image: linear-gradient(#1f2937, #1f2937),
+          linear-gradient(90deg, #38bdf8, #0ea5e9);
+      }
+
       .skill-bar {
         transition: width 1s ease-in-out;
       }
@@ -103,6 +124,12 @@
         border-radius: 50%;
         z-index: 1;
       }
+
+      /* Dark mode timeline item */
+      .dark .timeline-item::after {
+        background-color: #1f2937;
+      }
+
       .left {
         left: 0;
       }
@@ -119,6 +146,12 @@
         transform: translateY(-5px);
         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
       }
+
+      /* Dark mode project card hover */
+      .dark .project-card:hover {
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+      }
+
       .back-to-top {
         position: fixed;
         bottom: 20px;
@@ -130,14 +163,202 @@
       .back-to-top.visible {
         opacity: 1;
       }
+
+      /* Theme transition */
+      html.transition,
+      html.transition *,
+      html.transition *:before,
+      html.transition *:after {
+        transition: all 0.3s ease-in-out !important;
+        transition-delay: 0 !important;
+      }
+
+      /* Specific transitions for background colors and text colors */
+      body,
+      section,
+      div,
+      nav,
+      footer,
+      button,
+      input,
+      textarea {
+        transition: background-color 0.3s ease, color 0.3s ease,
+          border-color 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      /* Ensure border transitions are smooth */
+      .gradient-border {
+        transition: background-image 0.3s ease;
+      }
+
+      /* Ensure text color transitions are smooth for all elements */
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      p,
+      span,
+      a,
+      label {
+        transition: color 0.3s ease;
+      }
+
+      .dark .h-2.bg-gray-200 {
+        background-color: #374151; /* gray-700 */
+      }
+
+      /* Dark mode form inputs */
+      .dark input,
+      .dark textarea {
+        background-color: #1f2937; /* gray-800 */
+        color: white;
+        border-color: #4b5563; /* gray-600 */
+      }
+
+      .dark input:focus,
+      .dark textarea:focus {
+        border-color: #0ea5e9; /* sky-500 */
+      }
+
+      /* Text color adjustments for dark mode */
+      .dark h1,
+      .dark h2,
+      .dark h3,
+      .dark h4,
+      .dark h5,
+      .dark h6 {
+        color: #f3f4f6; /* gray-100 */
+      }
+
+      .dark .text-gray-800 {
+        color: #f3f4f6; /* gray-100 */
+      }
+
+      .dark .text-gray-700 {
+        color: #e5e7eb; /* gray-200 */
+      }
+
+      .dark .text-gray-600 {
+        color: #d1d5db; /* gray-300 */
+      }
+
+      html:not(.dark) body {
+        background-color: #f9fafb; /* gray-50 */
+        color: #1f2937; /* gray-800 */
+      }
+
+      html:not(.dark) section.bg-white {
+        background-color: #ffffff !important;
+      }
+
+      html:not(.dark) section.bg-gray-50 {
+        background-color: #f9fafb !important;
+      }
+
+      html:not(.dark) .dark\:bg-gray-800 {
+        background-color: #ffffff !important;
+      }
+
+      html:not(.dark) .dark\:bg-gray-900 {
+        background-color: #f9fafb !important;
+      }
+
+      html:not(.dark) .dark\:bg-gray-700 {
+        background-color: #ffffff !important;
+      }
+
+      html:not(.dark) .dark\:text-white,
+      html:not(.dark) .dark\:text-gray-200,
+      html:not(.dark) .dark\:text-gray-300 {
+        color: inherit !important;
+      }
+
+      html:not(.dark) nav.dark\:bg-gray-800 {
+        background-color: #ffffff !important;
+      }
+
+      html:not(.dark) #home {
+        background-image: linear-gradient(
+          to right,
+          #f0f9ff,
+          #ffffff
+        ) !important;
+      }
+
+      .dark #home {
+        background-image: linear-gradient(
+          to right,
+          #111827,
+          #1f2937
+        ) !important;
+      }
+
+      html:not(.dark) .bg-sky-800 {
+        background-color: #e0f2fe !important; /* sky-100 */
+      }
+
+      html:not(.dark) .text-sky-300 {
+        color: #0284c7 !important; /* sky-600 */
+      }
+
+      /* Garantir texto branco em elementos dark */
+      .dark input,
+      .dark textarea,
+      .dark label,
+      .dark h3,
+      .dark h4,
+      .dark p,
+      .dark .text-gray-600,
+      .dark .text-gray-700 {
+        color: #f3f4f6 !important; /* gray-100 */
+      }
+
+      /* Garantir que os badges de tecnologias tenham cores corretas no tema escuro */
+      .dark .bg-sky-100 {
+        background-color: #0c4a6e !important; /* sky-900 */
+      }
+
+      .dark .text-sky-600 {
+        color: #7dd3fc !important; /* sky-300 */
+      }
+
+      html:not(.dark) .skill-icon-bg {
+        background-color: #e0f2fe !important; /* sky-100 */
+      }
+
+      .dark .skill-icon-bg {
+        background-color: #0c4a6e !important; /* sky-900 */
+      }
+
+      /* Forçar cores específicas para tags de projeto */
+      html:not(.dark) .project-tag {
+        background-color: #e0f2fe !important; /* sky-100 */
+        color: #0284c7 !important; /* sky-600 */
+      }
+
+      .dark .project-tag {
+        background-color: #075985 !important; /* sky-800 */
+        color: #7dd3fc !important; /* sky-300 */
+      }
+
+      html:not(.dark) .dark\:border-gray-600 {
+        border-color: #e5e7eb !important; /* gray-200 - cor padrão de borda no tema claro */
+      }
+
+      /* Se preferir usar a cor original das bordas do Tailwind */
+      html:not(.dark) .border.dark\:border-gray-600 {
+        border-color: #e5e7eb !important; /* gray-200 */
+      }
     </style>
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body class="bg-gray-50">
+  <body class="bg-gray-50 dark:bg-gray-900 dark:text-white">
     <!-- Navigation -->
     <nav
       x-data="{ isOpen: false }"
-      class="bg-white shadow-md fixed w-full z-10"
+      class="bg-white shadow-md fixed w-full z-10 dark:bg-gray-800"
     >
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -148,34 +369,65 @@
             <div class="ml-10 flex items-center space-x-8">
               <a
                 href="#home"
-                class="text-sky-600 hover:text-sky-800 px-3 py-2 rounded-md text-sm font-medium"
+                class="text-sky-600 hover:text-sky-800 px-3 py-2 rounded-md text-sm font-medium dark:text-sky-400 dark:hover:text-sky-300"
                 >Início</a
               >
               <a
                 href="#about"
-                class="text-gray-600 hover:text-sky-600 px-3 py-2 rounded-md text-sm font-medium"
+                class="text-gray-600 hover:text-sky-600 px-3 py-2 rounded-md text-sm font-medium dark:text-gray-300 dark:hover:text-sky-400"
                 >Sobre</a
               >
               <a
                 href="#experience"
-                class="text-gray-600 hover:text-sky-600 px-3 py-2 rounded-md text-sm font-medium"
+                class="text-gray-600 hover:text-sky-600 px-3 py-2 rounded-md text-sm font-medium dark:text-gray-300 dark:hover:text-sky-400"
                 >Experiência</a
               >
               <a
                 href="#skills"
-                class="text-gray-600 hover:text-sky-600 px-3 py-2 rounded-md text-sm font-medium"
+                class="text-gray-600 hover:text-sky-600 px-3 py-2 rounded-md text-sm font-medium dark:text-gray-300 dark:hover:text-sky-400"
                 >Habilidades</a
               >
               <a
                 href="#projects"
-                class="text-gray-600 hover:text-sky-600 px-3 py-2 rounded-md text-sm font-medium"
+                class="text-gray-600 hover:text-sky-600 px-3 py-2 rounded-md text-sm font-medium dark:text-gray-300 dark:hover:text-sky-400"
                 >Projetos</a
               >
               <a
                 href="#contact"
-                class="text-gray-600 hover:text-sky-600 px-3 py-2 rounded-md text-sm font-medium"
+                class="text-gray-600 hover:text-sky-600 px-3 py-2 rounded-md text-sm font-medium dark:text-gray-300 dark:hover:text-sky-400"
                 >Contato</a
               >
+              <!-- Botão de Toggle de Tema -->
+              <button
+                id="themeToggle"
+                class="p-2 rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200 focus:outline-none transition-colors duration-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
+                aria-label="Toggle theme"
+              >
+                <svg
+                  id="sunIcon"
+                  class="w-5 h-5"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                <svg
+                  id="moonIcon"
+                  class="w-5 h-5 hidden"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
+                  ></path>
+                </svg>
+              </button>
             </div>
           </div>
           <div class="-mr-2 flex md:hidden">
@@ -213,34 +465,68 @@
         <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
           <a
             href="#home"
-            class="text-sky-600 hover:text-sky-800 block px-3 py-2 rounded-md text-base font-medium"
+            class="text-sky-600 hover:text-sky-800 block px-3 py-2 rounded-md text-base font-medium dark:text-sky-400 dark:hover:text-sky-300"
             >Início</a
           >
           <a
             href="#about"
-            class="text-gray-600 hover:text-sky-600 block px-3 py-2 rounded-md text-base font-medium"
+            class="text-gray-600 hover:text-sky-600 block px-3 py-2 rounded-md text-base font-medium dark:text-gray-300 dark:hover:text-sky-400"
             >Sobre</a
           >
           <a
             href="#experience"
-            class="text-gray-600 hover:text-sky-600 block px-3 py-2 rounded-md text-base font-medium"
+            class="text-gray-600 hover:text-sky-600 block px-3 py-2 rounded-md text-base font-medium dark:text-gray-300 dark:hover:text-sky-400"
             >Experiência</a
           >
           <a
             href="#skills"
-            class="text-gray-600 hover:text-sky-600 block px-3 py-2 rounded-md text-base font-medium"
+            class="text-gray-600 hover:text-sky-600 block px-3 py-2 rounded-md text-base font-medium dark:text-gray-300 dark:hover:text-sky-400"
             >Habilidades</a
           >
           <a
             href="#projects"
-            class="text-gray-600 hover:text-sky-600 block px-3 py-2 rounded-md text-base font-medium"
+            class="text-gray-600 hover:text-sky-600 block px-3 py-2 rounded-md text-base font-medium dark:text-gray-300 dark:hover:text-sky-400"
             >Projetos</a
           >
           <a
             href="#contact"
-            class="text-gray-600 hover:text-sky-600 block px-3 py-2 rounded-md text-base font-medium"
+            class="text-gray-600 hover:text-sky-600 block px-3 py-2 rounded-md text-base font-medium dark:text-gray-300 dark:hover:text-sky-400"
             >Contato</a
           >
+          <!-- Botão de Toggle de Tema Mobile -->
+          <div class="px-3 py-2">
+            <button
+              id="themeToggleMobile"
+              class="flex items-center text-gray-600 hover:text-sky-600 dark:text-gray-300 dark:hover:text-sky-400"
+              aria-label="Toggle theme"
+            >
+              <svg
+                id="sunIconMobile"
+                class="w-5 h-5 mr-2"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+              <svg
+                id="moonIconMobile"
+                class="w-5 h-5 mr-2 hidden"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
+                ></path>
+              </svg>
+              <span id="themeTextMobile">Modo Escuro</span>
+            </button>
+          </div>
         </div>
       </div>
     </nav>
@@ -248,7 +534,7 @@
     <!-- Hero Section -->
     <section
       id="home"
-      class="min-h-screen bg-gradient-to-r from-sky-50 to-white flex items-center pt-16"
+      class="min-h-screen bg-gradient-to-r from-sky-50 to-white dark:from-gray-900 dark:to-gray-800 flex items-center pt-16"
     >
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div class="flex flex-col md:flex-row items-center">
@@ -337,10 +623,10 @@
                 />
               </div>
               <div
-                class="absolute -bottom-5 -right-5 bg-white p-3 rounded-lg shadow-lg"
+                class="absolute -bottom-5 -right-5 bg-white dark:bg-gray-700 p-3 rounded-lg shadow-lg"
               >
                 <div class="text-sky-500 font-bold">4+</div>
-                <div class="text-gray-600 text-xs">
+                <div class="text-gray-600 dark:text-gray-300 text-xs">
                   Anos de<br />Experiência
                 </div>
               </div>
@@ -351,7 +637,7 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-20 bg-white">
+    <section id="about" class="py-20 bg-white dark:bg-gray-800">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-16">
           <h2 class="text-3xl font-bold text-gray-800">
@@ -364,22 +650,24 @@
             class="md:w-1/2 mb-10 md:mb-0 pr-0 md:pr-10"
             x-data="{ showAll: false }"
           >
-            <h3 class="text-2xl font-semibold mb-6 text-gray-700">
+            <h3
+              class="text-2xl font-semibold mb-6 text-gray-700 dark:text-white"
+            >
               Desenvolvedor Full Stack, apaixonado por tecnologia
             </h3>
-            <p class="text-gray-600 mb-4">
+            <p class="text-gray-600 dark:text-gray-300 mb-4">
               Sou um desenvolvedor Full Stack com mais de 4 anos de experiência
               no desenvolvimento de sistemas, especializado em tecnologias como
               JAVA, React JS, JavaScript e Spring Boot.
             </p>
-            <p class="text-gray-600 mb-4" x-show="showAll">
+            <p class="text-gray-600 dark:text-gray-300 mb-4" x-show="showAll">
               Possuo 8 anos de experiência com Java, começando meu aprendizado
               no IFPR em 2016, dos quais 4 anos foram dedicados a experiências
               profissionais. Estou constantemente me atualizando nas versões
               mais recentes de Java, React e Spring Boot, visando aprimorar
               minhas habilidades e acompanhar as inovações tecnológicas.
             </p>
-            <p class="text-gray-600 mb-6" x-show="showAll">
+            <p class="text-gray-600 dark:text-gray-300 mb-6" x-show="showAll">
               Minha experiência inclui o desenvolvimento de sistemas web ERP,
               análise de dados, manutenção de sistemas legados, e liderança de
               equipes de desenvolvimento.
@@ -444,62 +732,70 @@
           <div class="md:w-1/2">
             <div class="grid grid-cols-2 gap-6">
               <div
-                class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition duration-300 text-center"
+                class="bg-white dark:bg-gray-700 p-6 rounded-xl shadow-md hover:shadow-lg transition duration-300 text-center"
               >
                 <div
-                  class="w-16 h-16 bg-sky-100 rounded-full flex items-center justify-center mx-auto mb-4"
+                  class="w-16 h-16 bg-sky-100 dark:bg-sky-900 skill-icon-bg rounded-full flex items-center justify-center mx-auto mb-4"
                 >
                   <i class="fas fa-code text-sky-500 text-2xl"></i>
                 </div>
-                <h3 class="text-xl font-semibold text-gray-700 mb-2">
+                <h3
+                  class="text-xl font-semibold text-gray-700 dark:text-gray-200 mb-2"
+                >
                   Desenvolvimento Web
                 </h3>
-                <p class="text-gray-600">
+                <p class="text-gray-600 dark:text-gray-300">
                   Especialista em criar aplicações web modernas e responsivas.
                 </p>
               </div>
               <div
-                class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition duration-300 text-center"
+                class="bg-white dark:bg-gray-700 p-6 rounded-xl shadow-md hover:shadow-lg transition duration-300 text-center"
               >
                 <div
-                  class="w-16 h-16 bg-sky-100 rounded-full flex items-center justify-center mx-auto mb-4"
+                  class="w-16 h-16 bg-sky-100 dark:bg-sky-900 skill-icon-bg rounded-full flex items-center justify-center mx-auto mb-4"
                 >
                   <i class="fas fa-mobile-alt text-sky-500 text-2xl"></i>
                 </div>
-                <h3 class="text-xl font-semibold text-gray-700 mb-2">
+                <h3
+                  class="text-xl font-semibold text-gray-700 dark:text-gray-200 mb-2"
+                >
                   Aplicações Mobile
                 </h3>
-                <p class="text-gray-600">
+                <p class="text-gray-600 dark:text-gray-300">
                   Desenvolvimento de aplicativos mobile com React Native.
                 </p>
               </div>
               <div
-                class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition duration-300 text-center"
+                class="bg-white dark:bg-gray-700 p-6 rounded-xl shadow-md hover:shadow-lg transition duration-300 text-center"
               >
                 <div
-                  class="w-16 h-16 bg-sky-100 rounded-full flex items-center justify-center mx-auto mb-4"
+                  class="w-16 h-16 bg-sky-100 dark:bg-sky-900 skill-icon-bg rounded-full flex items-center justify-center mx-auto mb-4"
                 >
                   <i class="fas fa-server text-sky-500 text-2xl"></i>
                 </div>
-                <h3 class="text-xl font-semibold text-gray-700 mb-2">
+                <h3
+                  class="text-xl font-semibold text-gray-700 dark:text-gray-200 mb-2"
+                >
                   Back-End
                 </h3>
-                <p class="text-gray-600">
+                <p class="text-gray-600 dark:text-gray-300">
                   Desenvolvimento de APIs RESTful com Java e Spring Boot.
                 </p>
               </div>
               <div
-                class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition duration-300 text-center"
+                class="bg-white dark:bg-gray-700 p-6 rounded-xl shadow-md hover:shadow-lg transition duration-300 text-center"
               >
                 <div
-                  class="w-16 h-16 bg-sky-100 rounded-full flex items-center justify-center mx-auto mb-4"
+                  class="w-16 h-16 bg-sky-100 dark:bg-sky-900 skill-icon-bg rounded-full flex items-center justify-center mx-auto mb-4"
                 >
                   <i class="fas fa-users text-sky-500 text-2xl"></i>
                 </div>
-                <h3 class="text-xl font-semibold text-gray-700 mb-2">
+                <h3
+                  class="text-xl font-semibold text-gray-700 dark:text-gray-200 mb-2"
+                >
                   Liderança Técnica
                 </h3>
-                <p class="text-gray-600">
+                <p class="text-gray-600 dark:text-gray-300">
                   Experiência em liderar equipes de desenvolvimento de software.
                 </p>
               </div>
@@ -510,10 +806,11 @@
     </section>
 
     <!-- Experience Section -->
-    <section id="experience" class="py-20 bg-gray-50">
+    <!-- Experience Section -->
+    <section id="experience" class="py-20 bg-gray-50 dark:bg-gray-900">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-16">
-          <h2 class="text-3xl font-bold text-gray-800">
+          <h2 class="text-3xl font-bold text-gray-800 dark:text-white">
             Minha <span class="gradient-text">Experiência</span>
           </h2>
           <div class="w-16 h-1 bg-sky-500 mx-auto mt-2"></div>
@@ -538,9 +835,9 @@
             </div>
             <div class="md:w-1/2 pl-0 md:pl-12 mt-4 md:mt-0">
               <div
-                class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300"
+                class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300"
               >
-                <ul class="text-gray-600 space-y-2">
+                <ul class="text-gray-600 dark:text-gray-300 space-y-2">
                   <li class="flex items-start">
                     <svg
                       class="w-5 h-5 text-sky-500 mr-2 mt-0.5"
@@ -651,11 +948,11 @@
               </p>
               <p class="text-gray-600">Agosto de 2023 - Julho de 2024</p>
             </div>
-            <div class="md:w-1/2 pl-0 md:pl-12 mt-4 md:mt-0 order-2 md:order-2">
+            <div class="md:w-1/2 pl-0 md:pl-12 mt-4 md:mt-0">
               <div
-                class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300"
+                class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300"
               >
-                <ul class="text-gray-600 space-y-2">
+                <ul class="text-gray-600 dark:text-gray-300 space-y-2">
                   <li class="flex items-start">
                     <svg
                       class="w-5 h-5 text-sky-500 mr-2 mt-0.5"
@@ -750,9 +1047,9 @@
             </div>
             <div class="md:w-1/2 pl-0 md:pl-12 mt-4 md:mt-0">
               <div
-                class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300"
+                class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300"
               >
-                <ul class="text-gray-600 space-y-2">
+                <ul class="text-gray-600 dark:text-gray-300 space-y-2">
                   <li class="flex items-start">
                     <svg
                       class="w-5 h-5 text-sky-500 mr-2 mt-0.5"
@@ -845,11 +1142,11 @@
               <p class="text-sky-500 font-medium">Freelancer</p>
               <p class="text-gray-600">Janeiro de 2018 - Fevereiro de 2022</p>
             </div>
-            <div class="md:w-1/2 pl-0 md:pl-12 mt-4 md:mt-0 order-2 md:order-2">
+            <div class="md:w-1/2 pl-0 md:pl-12 mt-4 md:mt-0">
               <div
-                class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300"
+                class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300"
               >
-                <ul class="text-gray-600 space-y-2">
+                <ul class="text-gray-600 dark:text-gray-300 space-y-2">
                   <li class="flex items-start">
                     <svg
                       class="w-5 h-5 text-sky-500 mr-2 mt-0.5"
@@ -932,10 +1229,10 @@
     </section>
 
     <!-- Skills Section -->
-    <section id="skills" class="py-20 bg-white">
+    <section id="skills" class="py-20 bg-white dark:bg-gray-800">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-16">
-          <h2 class="text-3xl font-bold text-gray-800">
+          <h2 class="text-3xl font-bold text-gray-800 dark:text-white">
             Minhas <span class="gradient-text">Habilidades</span>
           </h2>
           <div class="w-16 h-1 bg-sky-500 mx-auto mt-2"></div>
@@ -1027,102 +1324,114 @@
 
             <div class="grid grid-cols-3 gap-4">
               <div
-                class="bg-white border border-gray-200 rounded-lg p-4 text-center hover:shadow-md transition duration-300"
+                class="bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg p-4 text-center hover:shadow-md transition duration-300"
               >
                 <div
-                  class="w-12 h-12 bg-sky-100 rounded-full flex items-center justify-center mx-auto mb-3"
+                  class="w-12 h-12 bg-sky-100 dark:bg-sky-900 skill-icon-bg rounded-full flex items-center justify-center mx-auto mb-3"
                 >
                   <i class="fab fa-docker text-sky-500 text-xl"></i>
                 </div>
-                <h4 class="text-gray-700 font-medium">Docker</h4>
+                <h4 class="text-gray-700 dark:text-white font-medium">
+                  Docker
+                </h4>
               </div>
 
               <div
-                class="bg-white border border-gray-200 rounded-lg p-4 text-center hover:shadow-md transition duration-300"
+                class="bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg p-4 text-center hover:shadow-md transition duration-300"
               >
                 <div
-                  class="w-12 h-12 bg-sky-100 rounded-full flex items-center justify-center mx-auto mb-3"
+                  class="w-12 h-12 bg-sky-100 dark:bg-sky-900 skill-icon-bg rounded-full flex items-center justify-center mx-auto mb-3"
                 >
                   <i class="fab fa-git-alt text-sky-500 text-xl"></i>
                 </div>
-                <h4 class="text-gray-700 font-medium">Git</h4>
+                <h4 class="text-gray-700 dark:text-white font-medium">Git</h4>
               </div>
 
               <div
-                class="bg-white border border-gray-200 rounded-lg p-4 text-center hover:shadow-md transition duration-300"
+                class="bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg p-4 text-center hover:shadow-md transition duration-300"
               >
                 <div
-                  class="w-12 h-12 bg-sky-100 rounded-full flex items-center justify-center mx-auto mb-3"
+                  class="w-12 h-12 bg-sky-100 dark:bg-sky-900 skill-icon-bg rounded-full flex items-center justify-center mx-auto mb-3"
                 >
                   <i class="fab fa-github text-sky-500 text-xl"></i>
                 </div>
-                <h4 class="text-gray-700 font-medium">GitHub</h4>
+                <h4 class="text-gray-700 dark:text-white font-medium">
+                  GitHub
+                </h4>
               </div>
 
               <div
-                class="bg-white border border-gray-200 rounded-lg p-4 text-center hover:shadow-md transition duration-300"
+                class="bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg p-4 text-center hover:shadow-md transition duration-300"
               >
                 <div
-                  class="w-12 h-12 bg-sky-100 rounded-full flex items-center justify-center mx-auto mb-3"
+                  class="w-12 h-12 bg-sky-100 dark:bg-sky-900 skill-icon-bg rounded-full flex items-center justify-center mx-auto mb-3"
                 >
                   <i class="fab fa-figma text-sky-500 text-xl"></i>
                 </div>
-                <h4 class="text-gray-700 font-medium">Figma</h4>
+                <h4 class="text-gray-700 dark:text-white font-medium">Figma</h4>
               </div>
 
               <div
-                class="bg-white border border-gray-200 rounded-lg p-4 text-center hover:shadow-md transition duration-300"
+                class="bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg p-4 text-center hover:shadow-md transition duration-300"
               >
                 <div
-                  class="w-12 h-12 bg-sky-100 rounded-full flex items-center justify-center mx-auto mb-3"
+                  class="w-12 h-12 bg-sky-100 dark:bg-sky-900 skill-icon-bg rounded-full flex items-center justify-center mx-auto mb-3"
                 >
                   <i class="fas fa-database text-sky-500 text-xl"></i>
                 </div>
-                <h4 class="text-gray-700 font-medium">MySQL</h4>
+                <h4 class="text-gray-700 dark:text-white font-medium">MySQL</h4>
               </div>
 
               <div
-                class="bg-white border border-gray-200 rounded-lg p-4 text-center hover:shadow-md transition duration-300"
+                class="bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg p-4 text-center hover:shadow-md transition duration-300"
               >
                 <div
-                  class="w-12 h-12 bg-sky-100 rounded-full flex items-center justify-center mx-auto mb-3"
+                  class="w-12 h-12 bg-sky-100 dark:bg-sky-900 skill-icon-bg rounded-full flex items-center justify-center mx-auto mb-3"
                 >
                   <i class="fas fa-database text-sky-500 text-xl"></i>
                 </div>
-                <h4 class="text-gray-700 font-medium">MongoDB</h4>
+                <h4 class="text-gray-700 dark:text-white font-medium">
+                  MongoDB
+                </h4>
               </div>
 
               <div
-                class="bg-white border border-gray-200 rounded-lg p-4 text-center hover:shadow-md transition duration-300"
+                class="bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg p-4 text-center hover:shadow-md transition duration-300"
               >
                 <div
-                  class="w-12 h-12 bg-sky-100 rounded-full flex items-center justify-center mx-auto mb-3"
+                  class="w-12 h-12 bg-sky-100 dark:bg-sky-900 skill-icon-bg rounded-full flex items-center justify-center mx-auto mb-3"
                 >
                   <i class="fab fa-react text-sky-500 text-xl"></i>
                 </div>
-                <h4 class="text-gray-700 font-medium">React Native</h4>
+                <h4 class="text-gray-700 dark:text-white font-medium">
+                  React Native
+                </h4>
               </div>
 
               <div
-                class="bg-white border border-gray-200 rounded-lg p-4 text-center hover:shadow-md transition duration-300"
+                class="bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg p-4 text-center hover:shadow-md transition duration-300"
               >
                 <div
-                  class="w-12 h-12 bg-sky-100 rounded-full flex items-center justify-center mx-auto mb-3"
+                  class="w-12 h-12 bg-sky-100 dark:bg-sky-900 skill-icon-bg rounded-full flex items-center justify-center mx-auto mb-3"
                 >
                   <i class="fab fa-vaadin text-sky-500 text-xl"></i>
                 </div>
-                <h4 class="text-gray-700 font-medium">Vaadin</h4>
+                <h4 class="text-gray-700 dark:text-white font-medium">
+                  Vaadin
+                </h4>
               </div>
 
               <div
-                class="bg-white border border-gray-200 rounded-lg p-4 text-center hover:shadow-md transition duration-300"
+                class="bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg p-4 text-center hover:shadow-md transition duration-300"
               >
                 <div
-                  class="w-12 h-12 bg-sky-100 rounded-full flex items-center justify-center mx-auto mb-3"
+                  class="w-12 h-12 bg-sky-100 dark:bg-sky-900 skill-icon-bg rounded-full flex items-center justify-center mx-auto mb-3"
                 >
                   <i class="fab fa-aws text-sky-500 text-xl"></i>
                 </div>
-                <h4 class="text-gray-700 font-medium">Firebase</h4>
+                <h4 class="text-gray-700 dark:text-white font-medium">
+                  Firebase
+                </h4>
               </div>
             </div>
 
@@ -1173,7 +1482,7 @@
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="py-20 bg-gray-50">
+    <section id="projects" class="py-20 bg-gray-50 dark:bg-gray-900">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-16">
           <h2 class="text-3xl font-bold text-gray-800">
@@ -1185,9 +1494,11 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <!-- Project 1 -->
           <div
-            class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 project-card"
+            class="bg-white dark:bg-gray-700 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 project-card"
           >
-            <div class="h-48 bg-sky-100 flex items-center justify-center">
+            <div
+              class="h-48 bg-sky-100 dark:bg-sky-900 flex items-center justify-center"
+            >
               <img
                 src="https://cdn.glitch.global/fb9ad681-7988-4fb5-ac7a-c6bd685ace21/sementes.png?v=1744432898839"
                 alt="Sempre-app Screenshot"
@@ -1195,29 +1506,31 @@
               />
             </div>
             <div class="p-6">
-              <h3 class="text-xl font-semibold text-gray-800 mb-2">
+              <h3
+                class="text-xl font-semibold text-gray-800 dark:text-white mb-2"
+              >
                 Sempre-app
               </h3>
-              <p class="text-gray-600 mb-4">
+              <p class="text-gray-600 dark:text-gray-300 mb-4">
                 Aplicativo para gestão de planilhas de croqui para controle de
                 área de plantio de amostras de sementes desenvolvido para a
                 empresa SEMPRE SEMENTES.
               </p>
               <div class="flex flex-wrap mb-4">
                 <span
-                  class="bg-sky-100 text-sky-600 text-xs px-2 py-1 rounded-full mr-2 mb-2"
+                  class="bg-sky-100 dark:bg-sky-800 text-sky-600 dark:text-sky-300 text-xs px-2 py-1 rounded-full mr-2 mb-2 project-tag"
                   >React Native</span
                 >
                 <span
-                  class="bg-sky-100 text-sky-600 text-xs px-2 py-1 rounded-full mr-2 mb-2"
+                  class="bg-sky-100 dark:bg-sky-800 text-sky-600 dark:text-sky-300 text-xs px-2 py-1 rounded-full mr-2 mb-2 project-tag"
                   >JavaScript</span
                 >
                 <span
-                  class="bg-sky-100 text-sky-600 text-xs px-2 py-1 rounded-full mr-2 mb-2"
+                  class="bg-sky-100 dark:bg-sky-800 text-sky-600 dark:text-sky-300 text-xs px-2 py-1 rounded-full mr-2 mb-2 project-tag"
                   >Async Storage</span
                 >
                 <span
-                  class="bg-sky-100 text-sky-600 text-xs px-2 py-1 rounded-full mr-2 mb-2"
+                  class="bg-sky-100 dark:bg-sky-800 text-sky-600 dark:text-sky-300 text-xs px-2 py-1 rounded-full mr-2 mb-2 project-tag"
                   >Figma</span
                 >
               </div>
@@ -1247,9 +1560,11 @@
 
           <!-- Project 2 -->
           <div
-            class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 project-card"
+            class="bg-white dark:bg-gray-700 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 project-card"
           >
-            <div class="h-48 bg-sky-100 flex items-center justify-center">
+            <div
+              class="h-48 bg-sky-100 dark:bg-sky-900 flex items-center justify-center"
+            >
               <img
                 src="https://cdn.glitch.global/fb9ad681-7988-4fb5-ac7a-c6bd685ace21/esfera.png?v=1744432888038"
                 alt="Esfera Pro Screenshot"
@@ -1257,32 +1572,34 @@
               />
             </div>
             <div class="p-6">
-              <h3 class="text-xl font-semibold text-gray-800 mb-2">
+              <h3
+                class="text-xl font-semibold text-gray-800 dark:text-white mb-2"
+              >
                 Esfera Pró: Sistema de CRM
               </h3>
-              <p class="text-gray-600 mb-4">
+              <p class="text-gray-600 dark:text-gray-300 mb-4">
                 Sistema web de CRM para gerenciamento de propostas de
                 telemarketing com foco em melhorar a gestão de clientes e leads.
               </p>
               <div class="flex flex-wrap mb-4">
                 <span
-                  class="bg-sky-100 text-sky-600 text-xs px-2 py-1 rounded-full mr-2 mb-2"
+                  class="bg-sky-100 dark:bg-sky-800 text-sky-600 dark:text-sky-300 text-xs px-2 py-1 rounded-full mr-2 mb-2 project-tag"
                   >Spring Boot</span
                 >
                 <span
-                  class="bg-sky-100 text-sky-600 text-xs px-2 py-1 rounded-full mr-2 mb-2"
+                  class="bg-sky-100 dark:bg-sky-800 text-sky-600 dark:text-sky-300 text-xs px-2 py-1 rounded-full mr-2 mb-2 project-tag"
                   >Java 17</span
                 >
                 <span
-                  class="bg-sky-100 text-sky-600 text-xs px-2 py-1 rounded-full mr-2 mb-2"
+                  class="bg-sky-100 dark:bg-sky-800 text-sky-600 dark:text-sky-300 text-xs px-2 py-1 rounded-full mr-2 mb-2 project-tag"
                   >MySQL</span
                 >
                 <span
-                  class="bg-sky-100 text-sky-600 text-xs px-2 py-1 rounded-full mr-2 mb-2"
+                  class="bg-sky-100 dark:bg-sky-800 text-sky-600 dark:text-sky-300 text-xs px-2 py-1 rounded-full mr-2 mb-2 project-tag"
                   >Thymeleaf</span
                 >
                 <span
-                  class="bg-sky-100 text-sky-600 text-xs px-2 py-1 rounded-full mr-2 mb-2"
+                  class="bg-sky-100 dark:bg-sky-800 text-sky-600 dark:text-sky-300 text-xs px-2 py-1 rounded-full mr-2 mb-2 project-tag"
                   >Testes Unitários</span
                 >
               </div>
@@ -1312,9 +1629,11 @@
 
           <!-- Project 3 -->
           <div
-            class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 project-card"
+            class="bg-white dark:bg-gray-700 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300 project-card"
           >
-            <div class="h-48 bg-sky-100 flex items-center justify-center">
+            <div
+              class="h-48 bg-sky-100 dark:bg-sky-900 flex items-center justify-center"
+            >
               <img
                 src="https://cdn.glitch.global/fb9ad681-7988-4fb5-ac7a-c6bd685ace21/queijos-finos.png?v=1744432894113"
                 alt="Web ERP Screenshot"
@@ -1322,40 +1641,42 @@
               />
             </div>
             <div class="p-6">
-              <h3 class="text-xl font-semibold text-gray-800 mb-2">
+              <h3
+                class="text-xl font-semibold text-gray-800 dark:text-white mb-2"
+              >
                 Queijos Finos
               </h3>
-              <p class="text-gray-600 mb-4">
+              <p class="text-gray-600 dark:text-gray-300 mb-4">
                 Sistema completo para gerenciamento de propriedades envolvidas
                 no Projeto de Queijos Finos.
               </p>
               <div class="flex flex-wrap mb-4">
                 <span
-                  class="bg-sky-100 text-sky-600 text-xs px-2 py-1 rounded-full mr-2 mb-2"
+                  class="bg-sky-100 dark:bg-sky-800 text-sky-600 dark:text-sky-300 text-xs px-2 py-1 rounded-full mr-2 mb-2 project-tag"
                   >Flutter</span
                 >
                 <span
-                  class="bg-sky-100 text-sky-600 text-xs px-2 py-1 rounded-full mr-2 mb-2"
+                  class="bg-sky-100 dark:bg-sky-800 text-sky-600 dark:text-sky-300 text-xs px-2 py-1 rounded-full mr-2 mb-2 project-tag"
                   >Java</span
                 >
                 <span
-                  class="bg-sky-100 text-sky-600 text-xs px-2 py-1 rounded-full mr-2 mb-2"
+                  class="bg-sky-100 dark:bg-sky-800 text-sky-600 dark:text-sky-300 text-xs px-2 py-1 rounded-full mr-2 mb-2 project-tag"
                   >MySQL</span
                 >
                 <span
-                  class="bg-sky-100 text-sky-600 text-xs px-2 py-1 rounded-full mr-2 mb-2"
+                  class="bg-sky-100 dark:bg-sky-800 text-sky-600 dark:text-sky-300 text-xs px-2 py-1 rounded-full mr-2 mb-2 project-tag"
                   >Mobile</span
                 >
                 <span
-                  class="bg-sky-100 text-sky-600 text-xs px-2 py-1 rounded-full mr-2 mb-2"
+                  class="bg-sky-100 dark:bg-sky-800 text-sky-600 dark:text-sky-300 text-xs px-2 py-1 rounded-full mr-2 mb-2 project-tag"
                   >Web</span
                 >
                 <span
-                  class="bg-sky-100 text-sky-600 text-xs px-2 py-1 rounded-full mr-2 mb-2"
+                  class="bg-sky-100 dark:bg-sky-800 text-sky-600 dark:text-sky-300 text-xs px-2 py-1 rounded-full mr-2 mb-2 project-tag"
                   >Docker</span
                 >
                 <span
-                  class="bg-sky-100 text-sky-600 text-xs px-2 py-1 rounded-full mr-2 mb-2"
+                  class="bg-sky-100 dark:bg-sky-800 text-sky-600 dark:text-sky-300 text-xs px-2 py-1 rounded-full mr-2 mb-2 project-tag"
                   >Testes Unitários
                 </span>
               </div>
@@ -1398,7 +1719,7 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-white">
+    <section id="contact" class="py-20 bg-white dark:bg-gray-800">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-16">
           <h2 class="text-3xl font-bold text-gray-800">
@@ -1486,10 +1807,14 @@
           </div>
 
           <div class="md:w-1/2">
-            <div class="bg-white p-8 rounded-lg shadow-md gradient-border">
+            <div
+              class="bg-white dark:bg-gray-700 p-8 rounded-lg shadow-md gradient-border"
+            >
               <form class="p-4" id="contactForm">
                 <div class="mb-6">
-                  <label for="name" class="block text-gray-700 font-medium mb-2"
+                  <label
+                    for="name"
+                    class="block text-gray-700 dark:text-white font-medium mb-2"
                     >Nome</label
                   >
                   <input
@@ -1497,7 +1822,7 @@
                     id="name"
                     name="nome"
                     required
-                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500"
+                    class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500"
                   />
                 </div>
 
@@ -1650,7 +1975,7 @@
     <!-- Back to Top Button -->
     <button
       id="backToTop"
-      class="back-to-top bg-sky-500 text-sky-500 hover:bg-sky-600 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg transition duration-300"
+      class="back-to-top bg-sky-500 text-white hover:bg-sky-600 w-12 h-12 rounded-full flex items-center justify-center shadow-lg transition duration-300"
     >
       <i class="fas fa-arrow-up"></i>
     </button>
@@ -1814,6 +2139,98 @@
           buttonText.textContent = "Enviar mensagem";
         }
       });
+    </script>
+
+    <!-- JavaScript para o Toggle de Tema -->
+    <script>
+      // Função para alternar o tema
+      function toggleTheme() {
+        // Adiciona classe de transição ao HTML
+        document.documentElement.classList.add("transition");
+
+        // Toggle da classe dark no HTML
+        document.documentElement.classList.toggle("dark");
+
+        // Determina o tema atual
+        const isDark = document.documentElement.classList.contains("dark");
+
+        // Atualiza ícones e texto
+        const sunIcon = document.getElementById("sunIcon");
+        const moonIcon = document.getElementById("moonIcon");
+        const sunIconMobile = document.getElementById("sunIconMobile");
+        const moonIconMobile = document.getElementById("moonIconMobile");
+        const themeTextMobile = document.getElementById("themeTextMobile");
+
+        if (isDark) {
+          // Modo escuro ativo
+          sunIcon.classList.add("hidden");
+          moonIcon.classList.remove("hidden");
+          sunIconMobile.classList.add("hidden");
+          moonIconMobile.classList.remove("hidden");
+          themeTextMobile.textContent = "Modo Claro";
+          localStorage.setItem("theme", "dark");
+
+          // Forçar aplicação do tema escuro
+          document.body.classList.add("dark-theme");
+        } else {
+          // Modo claro ativo
+          moonIcon.classList.add("hidden");
+          sunIcon.classList.remove("hidden");
+          moonIconMobile.classList.add("hidden");
+          sunIconMobile.classList.remove("hidden");
+          themeTextMobile.textContent = "Modo Escuro";
+          localStorage.setItem("theme", "light");
+
+          // Remover classe de tema escuro forçado
+          document.body.classList.remove("dark-theme");
+        }
+
+        // Remove a classe de transição após a transição terminar
+        setTimeout(() => {
+          document.documentElement.classList.remove("transition");
+        }, 300);
+      }
+
+      // Adiciona listeners aos botões de toggle
+      document
+        .getElementById("themeToggle")
+        .addEventListener("click", toggleTheme);
+      document
+        .getElementById("themeToggleMobile")
+        .addEventListener("click", toggleTheme);
+
+      // Verifica a preferência salva do usuário
+      function checkTheme() {
+        const userTheme = localStorage.getItem("theme");
+        const prefersDark = window.matchMedia(
+          "(prefers-color-scheme: dark)"
+        ).matches;
+
+        if (userTheme === "dark" || (!userTheme && prefersDark)) {
+          document.documentElement.classList.add("dark");
+          document.body.classList.add("dark-theme");
+
+          // Atualiza ícones e texto
+          const sunIcon = document.getElementById("sunIcon");
+          const moonIcon = document.getElementById("moonIcon");
+          const sunIconMobile = document.getElementById("sunIconMobile");
+          const moonIconMobile = document.getElementById("moonIconMobile");
+          const themeTextMobile = document.getElementById("themeTextMobile");
+
+          sunIcon.classList.add("hidden");
+          moonIcon.classList.remove("hidden");
+          sunIconMobile.classList.add("hidden");
+          moonIconMobile.classList.remove("hidden");
+          themeTextMobile.textContent = "Modo Claro";
+        } else {
+          // Garantir que o tema claro seja aplicado explicitamente
+          document.documentElement.classList.remove("dark");
+          document.body.classList.remove("dark-theme");
+        }
+      }
+
+      // Verifica o tema quando a página carrega
+      document.addEventListener("DOMContentLoaded", checkTheme);
     </script>
   </body>
 </html>

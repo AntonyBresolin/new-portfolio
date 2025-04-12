@@ -1,0 +1,11 @@
+<svg
+  fill="#0ea5e9"
+  viewBox="0 0 24 24"
+  height="64"
+  width="64"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M14 2H6a2 2 0 0 0-2 2v3H3a1 1 0 0 0-1 1v11a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a1 1 0 0 0-1-1h-1V4a2 2 0 0 0-2-2h-4zm4 5h-4V4h4v3zM4 8h16v11H4V8zm4 2v2h8v-2H8z"
+  ></path>
+</svg>
